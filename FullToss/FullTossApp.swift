@@ -11,7 +11,7 @@ import SwiftUI
 struct FullTossApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeUi()
         }
     }
 }
