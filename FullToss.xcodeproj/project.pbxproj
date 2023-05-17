@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8DA848AF2A1461CB00B4CFE0 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 8D4D126B2A14389C00498343 /* FloatingPanel */; };
+		8DA848B12A14646000B4CFE0 /* Atoms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA848B02A14646000B4CFE0 /* Atoms.swift */; };
 		8DBA0E652A12CE77005F6789 /* FullTossApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA0E642A12CE77005F6789 /* FullTossApp.swift */; };
 		8DBA0E672A12CE77005F6789 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA0E662A12CE77005F6789 /* ContentView.swift */; };
 		8DBA0E692A12CE78005F6789 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DBA0E682A12CE78005F6789 /* Assets.xcassets */; };
@@ -37,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8DA848B02A14646000B4CFE0 /* Atoms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atoms.swift; sourceTree = "<group>"; };
 		8DBA0E612A12CE77005F6789 /* FullToss.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FullToss.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DBA0E642A12CE77005F6789 /* FullTossApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullTossApp.swift; sourceTree = "<group>"; };
 		8DBA0E662A12CE77005F6789 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -57,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DA848AF2A1461CB00B4CFE0 /* FloatingPanel in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +111,7 @@
 				8DBA0E8E2A12DBAF005F6789 /* TeamAUi.swift */,
 				8DBA0E902A12DD7C005F6789 /* TeamBUi.swift */,
 				8DBA0E922A12F068005F6789 /* HomeUi.swift */,
+				8DA848B02A14646000B4CFE0 /* Atoms.swift */,
 			);
 			path = FullToss;
 			sourceTree = "<group>";
@@ -152,6 +157,9 @@
 			dependencies = (
 			);
 			name = FullToss;
+			packageProductDependencies = (
+				8D4D126B2A14389C00498343 /* FloatingPanel */,
+			);
 			productName = FullToss;
 			productReference = 8DBA0E612A12CE77005F6789 /* FullToss.app */;
 			productType = "com.apple.product-type.application";
@@ -224,6 +232,9 @@
 				Base,
 			);
 			mainGroup = 8DBA0E582A12CE77005F6789;
+			packageReferences = (
+				8D4D126A2A14389C00498343 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
+			);
 			productRefGroup = 8DBA0E622A12CE77005F6789 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -266,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DA848B12A14646000B4CFE0 /* Atoms.swift in Sources */,
 				8DBA0E672A12CE77005F6789 /* ContentView.swift in Sources */,
 				8DBA0E932A12F068005F6789 /* HomeUi.swift in Sources */,
 				8DBA0E8F2A12DBAF005F6789 /* TeamAUi.swift in Sources */,
@@ -601,6 +613,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8D4D126A2A14389C00498343 /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scenee/FloatingPanel";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8D4D126B2A14389C00498343 /* FloatingPanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D4D126A2A14389C00498343 /* XCRemoteSwiftPackageReference "FloatingPanel" */;
+			productName = FloatingPanel;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8DBA0E592A12CE77005F6789 /* Project object */;
 }
