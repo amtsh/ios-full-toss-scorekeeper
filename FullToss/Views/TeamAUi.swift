@@ -19,7 +19,6 @@ struct TeamAUi: View {
   func handleRedoTap() { team.redo() }
 
   var body: some View {
-    VStack {
       VStack {
         VStack {
           ScrollView(showsIndicators: false) {
@@ -59,7 +58,8 @@ struct TeamAUi: View {
           onRedoTap: handleRedoTap
         )
       }
-    }
+      .padding(.top, 0)
+      .navigationBarTitleDisplayMode(.inline)
   }
 }
 

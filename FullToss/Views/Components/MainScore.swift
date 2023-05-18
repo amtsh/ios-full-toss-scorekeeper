@@ -27,7 +27,7 @@ struct MainScore: View {
         .clipped()
         .font(.system(size: 70, weight: .semibold, design: .default))
     }
-    .padding(.top, 16)
+    .padding(.top, 0)
     .padding(.horizontal)
     Text("\(oversDelivered).\(ballsDelivered) / \(matchOvers)")
       .frame(maxWidth: .infinity, alignment: .trailing)

@@ -23,28 +23,29 @@ struct BattingExtraStats: View {
       .padding(.horizontal)
       .padding(.bottom, 5)
       .frame(maxWidth: .infinity, alignment: .trailing)
-      .clipped()
       .foregroundColor(.secondary)
       .font(.system(.subheadline, weight: .regular))
+      .clipped()
       HStack {
         Text("Projected Score")
         Text("\(projectedRuns)")
       }
       .padding(.horizontal)
-      .frame(maxWidth: .infinity, alignment: .trailing)
-      .clipped()
       .padding(.bottom, 5)
+      .frame(maxWidth: .infinity, alignment: .trailing)
       .foregroundColor(.secondary)
       .font(.system(.subheadline, weight: .regular))
+      .clipped()
       HStack {
         Text("Extras")
         Text("\(wideBalls) Wides · \(noBalls) No balls")
       }
       .padding(.horizontal)
+      .padding(.bottom, 5)
       .frame(maxWidth: .infinity, alignment: .trailing)
-      .clipped()
       .foregroundColor(.secondary)
       .font(.system(.subheadline, weight: .regular))
+      .clipped()
     }
     .padding(.top, 1)
   }
