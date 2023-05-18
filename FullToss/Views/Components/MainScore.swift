@@ -19,17 +19,17 @@ struct MainScore: View {
   var body: some View {
     HStack() {
       Text("\(teamName)")
-        .font(.system(.headline, weight: .bold))
+        .font(.system(.title2, weight: .bold))
         .foregroundColor(.green)
       Spacer()
-      Text("\(totalRuns) - \(totalWicketsDown)")
+      Text("\(totalRuns)-\(totalWicketsDown)")
         .frame(maxWidth: .infinity, alignment: .trailing)
         .clipped()
-        .font(.system(size: 60, weight: .regular, design: .default))
+        .font(.system(size: 70, weight: .semibold, design: .default))
     }
     .padding(.top, 16)
     .padding(.horizontal)
-    Text("(\(oversDelivered).\(ballsDelivered) / \(matchOvers))")
+    Text("\(oversDelivered).\(ballsDelivered) / \(matchOvers)")
       .frame(maxWidth: .infinity, alignment: .trailing)
       .clipped()
       .padding(.horizontal)

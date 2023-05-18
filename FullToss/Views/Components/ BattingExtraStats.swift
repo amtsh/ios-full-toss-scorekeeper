@@ -19,11 +19,11 @@ struct BattingExtraStats: View {
         Text("4.2")
       }
       .padding(.horizontal)
-      .padding(.bottom)
+      .padding(.bottom, 5)
       .frame(maxWidth: .infinity, alignment: .trailing)
       .clipped()
       .foregroundColor(.secondary)
-      .font(.system(.caption, weight: .semibold))
+      .font(.system(.subheadline, weight: .regular))
       HStack {
         Text("Projected Score")
         Text("65")
@@ -31,9 +31,9 @@ struct BattingExtraStats: View {
       .padding(.horizontal)
       .frame(maxWidth: .infinity, alignment: .trailing)
       .clipped()
-      .padding(.bottom)
+      .padding(.bottom, 5)
       .foregroundColor(.secondary)
-      .font(.system(.caption, weight: .semibold))
+      .font(.system(.subheadline, weight: .regular))
       HStack {
         Text("Extras")
         Text("\(wideBalls) wides · \(noBalls) no balls")
@@ -42,7 +42,7 @@ struct BattingExtraStats: View {
       .frame(maxWidth: .infinity, alignment: .trailing)
       .clipped()
       .foregroundColor(.secondary)
-      .font(.system(.caption, weight: .semibold))
+      .font(.system(.subheadline, weight: .regular))
     }
     .padding(.top, 1)
   }

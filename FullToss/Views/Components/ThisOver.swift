@@ -16,16 +16,14 @@ struct ThisOver: View {
   var body: some View {
     HStack {
       Text("This over")
-        .font(.system(.caption, weight: .semibold))
-        .foregroundColor(.secondary)
       Spacer()
       Text("\(runsInCurrentOver) runs (\(ballsLeftInCurrentOver) balls left)")
-        .font(.system(.caption, weight: .medium))
-        .foregroundColor(.secondary)
     }
     .padding(.top)
     .padding(.horizontal)
     .frame(maxWidth: .infinity, alignment: .leading)
+    .font(.system(.subheadline, weight: .regular))
+    .foregroundColor(.secondary)
     .clipped()
     
     LazyHGrid(rows: [GridItem(.flexible(), spacing: 0, alignment: .center)], spacing: 30) {
