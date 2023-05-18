@@ -9,6 +9,8 @@ import SwiftUI
 
 struct BattingExtraStats: View {
 
+  @Binding var currentRunRate: Float
+  @Binding var projectedRuns: Int
   @Binding var wideBalls: Int
   @Binding var noBalls: Int
 
@@ -16,7 +18,7 @@ struct BattingExtraStats: View {
     VStack {
       HStack {
         Text("Run rate")
-        Text("4.2")
+        Text("\(formatFloatValue(currentRunRate) ?? "")")
       }
       .padding(.horizontal)
       .padding(.bottom, 5)
@@ -26,7 +28,7 @@ struct BattingExtraStats: View {
       .font(.system(.subheadline, weight: .regular))
       HStack {
         Text("Projected Score")
-        Text("65")
+        Text("\(projectedRuns)")
       }
       .padding(.horizontal)
       .frame(maxWidth: .infinity, alignment: .trailing)
@@ -36,7 +38,7 @@ struct BattingExtraStats: View {
       .font(.system(.subheadline, weight: .regular))
       HStack {
         Text("Extras")
-        Text("\(wideBalls) wides · \(noBalls) no balls")
+        Text("\(wideBalls) Wides · \(noBalls) No balls")
       }
       .padding(.horizontal)
       .frame(maxWidth: .infinity, alignment: .trailing)

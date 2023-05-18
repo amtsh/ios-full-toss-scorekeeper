@@ -39,6 +39,7 @@ struct CircularButton: View {
           Image(systemName: value)
             .foregroundColor(.primary)
             .imageScale(.large)
+            .font(.system(.title3, weight: .medium))
         }
       }
     }

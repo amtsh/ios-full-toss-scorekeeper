@@ -82,6 +82,20 @@ class ScoreBoardViewModel: ObservableObject {
 
   private func updateRuns(_ runs: Int) {
     scoreBoard.runs += runs
+
+    updateRunRate()
+    updateProjectedRuns()
+  }
+
+  private func updateRunRate() {
+    let totalBallsDeliveredFromStart = (scoreBoard.oversDelivered * 6) + scoreBoard.ballsDelivered
+    if (totalBallsDeliveredFromStart > 0) {
+      scoreBoard.currentRunRate = Float(scoreBoard.runs) / (Float(totalBallsDeliveredFromStart) / 6.0)
+    }
+  }
+
+  private func updateProjectedRuns() {
+    scoreBoard.projectedRuns = Int(scoreBoard.currentRunRate * Float(scoreBoard.matchOvers))
   }
 
   private func updateWicketsDown() {

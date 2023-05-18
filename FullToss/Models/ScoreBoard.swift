@@ -13,6 +13,8 @@ struct ScoreBoard {
   var oversDelivered: Int = 0
   var ballsDelivered: Int = 0
   var wicketsDown: Int = 0
+  var currentRunRate: Float = 0
+  var projectedRuns: Int = 0
   
   struct OverDetails {
     var ballsLeftInCurrentOver: Int = 6

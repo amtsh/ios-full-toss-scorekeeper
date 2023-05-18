@@ -33,6 +33,8 @@ struct TeamAUi: View {
                 ballsDelivered: $team.scoreBoard.ballsDelivered
               )
               BattingExtraStats(
+                currentRunRate: $team.scoreBoard.currentRunRate,
+                projectedRuns: $team.scoreBoard.projectedRuns,
                 wideBalls: $team.scoreBoard.extras.wideBalls,
                 noBalls: $team.scoreBoard.extras.noBalls
               )

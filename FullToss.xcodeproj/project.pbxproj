@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D11A7012A16D5900071024B /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D11A7002A16D5900071024B /* utils.swift */; };
 		8DA848AF2A1461CB00B4CFE0 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 8D4D126B2A14389C00498343 /* FloatingPanel */; };
 		8DBA0E652A12CE77005F6789 /* FullTossApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA0E642A12CE77005F6789 /* FullTossApp.swift */; };
 		8DBA0E692A12CE78005F6789 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DBA0E682A12CE78005F6789 /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8D11A7002A16D5900071024B /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
 		8DBA0E612A12CE77005F6789 /* FullToss.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FullToss.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DBA0E642A12CE77005F6789 /* FullTossApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullTossApp.swift; sourceTree = "<group>"; };
 		8DBA0E682A12CE78005F6789 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				8DBA0E642A12CE77005F6789 /* FullTossApp.swift */,
 				8DBA0E682A12CE78005F6789 /* Assets.xcassets */,
 				8DBA0E6A2A12CE78005F6789 /* Preview Content */,
+				8D11A7002A16D5900071024B /* utils.swift */,
 			);
 			path = FullToss;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				8DFD7D232A14F5E500C24667 /* CircularButton.swift in Sources */,
 				8DFD7D702A15633700C24667 /* MainScore.swift in Sources */,
 				8DBA0E8F2A12DBAF005F6789 /* TeamAUi.swift in Sources */,
+				8D11A7012A16D5900071024B /* utils.swift in Sources */,
 				8DFD7D652A152EA400C24667 /* YetToBat.swift in Sources */,
 				8DFD7D6C2A15325E00C24667 /* ScoreBoardViewModel.swift in Sources */,
 				8DBA0E652A12CE77005F6789 /* FullTossApp.swift in Sources */,
