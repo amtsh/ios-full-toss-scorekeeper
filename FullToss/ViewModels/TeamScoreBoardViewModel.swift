@@ -7,25 +7,26 @@
 
 import SwiftUI
 
-enum ScoreBoardAction {
+enum TeamScoreBoardAction {
   case ADDRUNS(runs: Int)
   case WICKETDOWN
   case WIDEBALL
   case NOBALL
+  case ENDINNINGS
   case UNDO
   case REDO
 }
 
-class ScoreBoardViewModel: ObservableObject {
-  @Published var scoreBoard: ScoreBoard
+class TeamScoreBoardViewModel: ObservableObject {
+  @Published var scoreBoard: TeamScoreBoard
 
   private var undoManager = UndoManager()
 
   init(_ teamName: String, matchOvers: Int) {
-    self.scoreBoard = ScoreBoard(teamName: teamName, matchOvers: matchOvers)
+    self.scoreBoard = TeamScoreBoard(teamName: teamName, matchOvers: matchOvers)
   }
 
-  func reduce(action: ScoreBoardAction) {
+  func reduce(action: TeamScoreBoardAction) {
     switch action {
       case .ADDRUNS(let runs):
         updateScoreBoardOnValidDelivery(runs)
@@ -43,6 +44,9 @@ class ScoreBoardViewModel: ObservableObject {
       case .WIDEBALL:
         updateWideBalls()
         scoreBoard.overDetails.thisOver.append("WB")
+
+      case .ENDINNINGS:
+        endInnings()
 
       case .UNDO:
         if undoManager.canUndo {
@@ -107,7 +111,6 @@ class ScoreBoardViewModel: ObservableObject {
     if(scoreBoard.extras.enabled) {
       updateRuns(1)
     }
-
   }
 
   private func updateWideBalls() {
@@ -115,6 +118,10 @@ class ScoreBoardViewModel: ObservableObject {
     if(scoreBoard.extras.enabled) {
       updateRuns(1)
     }
+  }
+
+  private func endInnings() {
+    scoreBoard.hasInningsEnded = true
   }
 
   private func resetValuesOnOverStart() {
@@ -125,5 +132,9 @@ class ScoreBoardViewModel: ObservableObject {
   private func resetValuesOnOverEnd() {
     scoreBoard.oversDelivered += 1
     scoreBoard.ballsDelivered = 0
+
+    if scoreBoard.oversDelivered == scoreBoard.matchOvers {
+      endInnings()
+    }
   }
 }

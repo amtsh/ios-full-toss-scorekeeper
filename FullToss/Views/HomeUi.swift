@@ -11,12 +11,25 @@ import Foundation
 struct HomeUi: View {
   @StateObject var matches = MatchesViewModel()
 
+  func getDestination(match: Match) -> AnyView {
+    if !match.firstTeam.scoreBoard.hasInningsEnded {
+      return AnyView(TeamAUi(team: match.firstTeam))
+    }
+
+    if !match.secondTeam.scoreBoard.hasInningsEnded {
+      return AnyView(TeamBUi(team: match.secondTeam))
+    }
+
+    return AnyView(MatchSummaryUi(match: match))
+  }
+
   var body: some View {
     NavigationView {
       VStack {
         VStack {
           List(matches.matchesList) { match in // Replace with your data model here
-            NavigationLink(destination: TeamAUi(team: match.firstTeam)) {
+
+            NavigationLink(destination: getDestination(match: match)) {
 
               MatchRow(
                 title: "\(match.firstTeam.scoreBoard.teamName) vs \(match.secondTeam.scoreBoard.teamName)",

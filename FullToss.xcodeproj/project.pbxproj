@@ -16,7 +16,7 @@
 		8DBA0E802A12CE7A005F6789 /* FullTossUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA0E7F2A12CE7A005F6789 /* FullTossUITests.swift */; };
 		8DBA0E822A12CE7A005F6789 /* FullTossUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA0E812A12CE7A005F6789 /* FullTossUITestsLaunchTests.swift */; };
 		8DBA0E8F2A12DBAF005F6789 /* TeamAUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA0E8E2A12DBAF005F6789 /* TeamAUi.swift */; };
-		8DBA0E912A12DD7C005F6789 /* TeamBUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA0E902A12DD7C005F6789 /* TeamBUi.swift */; };
+		8DBA0E912A12DD7C005F6789 /* TeamBUi-old.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA0E902A12DD7C005F6789 /* TeamBUi-old.swift */; };
 		8DBA0E932A12F068005F6789 /* HomeUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA0E922A12F068005F6789 /* HomeUi.swift */; };
 		8DE3A76A2A17AAE70024C7FF /* MatchesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE3A7692A17AAE70024C7FF /* MatchesViewModel.swift */; };
 		8DE3A76C2A17AF980024C7FF /* NewMatchPreScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE3A76B2A17AF980024C7FF /* NewMatchPreScreen.swift */; };
@@ -24,13 +24,18 @@
 		8DE3A7702A17D74C0024C7FF /* ToBeDeleted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE3A76F2A17D74C0024C7FF /* ToBeDeleted.swift */; };
 		8DE3A7732A17D9ED0024C7FF /* UBottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 8DE3A7722A17D9ED0024C7FF /* UBottomSheet */; };
 		8DE3A7752A17E4DE0024C7FF /* FirstInningsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE3A7742A17E4DE0024C7FF /* FirstInningsMenu.swift */; };
+		8DE3A7772A17F7780024C7FF /* AfterInningsEndButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE3A7762A17F7780024C7FF /* AfterInningsEndButton.swift */; };
+		8DE3A7792A17FB3B0024C7FF /* TeamBUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE3A7782A17FB3B0024C7FF /* TeamBUi.swift */; };
+		8DE3A77B2A17FF080024C7FF /* SecondInningsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE3A77A2A17FF080024C7FF /* SecondInningsMenu.swift */; };
+		8DE3A77D2A1808140024C7FF /* MatchSummaryUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE3A77C2A1808140024C7FF /* MatchSummaryUi.swift */; };
+		8DE3A7812A180DCC0024C7FF /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE3A7802A180DCC0024C7FF /* Match.swift */; };
 		8DFD7D232A14F5E500C24667 /* CircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD7D222A14F5E500C24667 /* CircularButton.swift */; };
 		8DFD7D5F2A152C9E00C24667 /* ControlPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD7D5E2A152C9E00C24667 /* ControlPanel.swift */; };
 		8DFD7D612A152CFB00C24667 /* ThisOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD7D602A152CFB00C24667 /* ThisOver.swift */; };
 		8DFD7D632A152DF000C24667 /*  BattingExtraStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD7D622A152DF000C24667 /*  BattingExtraStats.swift */; };
 		8DFD7D652A152EA400C24667 /* YetToBat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD7D642A152EA400C24667 /* YetToBat.swift */; };
-		8DFD7D682A15308000C24667 /* ScoreBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD7D672A15308000C24667 /* ScoreBoard.swift */; };
-		8DFD7D6C2A15325E00C24667 /* ScoreBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD7D6B2A15325E00C24667 /* ScoreBoardViewModel.swift */; };
+		8DFD7D682A15308000C24667 /* TeamScoreBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD7D672A15308000C24667 /* TeamScoreBoard.swift */; };
+		8DFD7D6C2A15325E00C24667 /* TeamScoreBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD7D6B2A15325E00C24667 /* TeamScoreBoardViewModel.swift */; };
 		8DFD7D702A15633700C24667 /* MainScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD7D6F2A15633700C24667 /* MainScore.swift */; };
 		8DFD7D722A15795700C24667 /* ScoreBoardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD7D712A15795700C24667 /* ScoreBoardViewModelTests.swift */; };
 /* End PBXBuildFile section */
@@ -64,20 +69,25 @@
 		8DBA0E7F2A12CE7A005F6789 /* FullTossUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullTossUITests.swift; sourceTree = "<group>"; };
 		8DBA0E812A12CE7A005F6789 /* FullTossUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullTossUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		8DBA0E8E2A12DBAF005F6789 /* TeamAUi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamAUi.swift; sourceTree = "<group>"; };
-		8DBA0E902A12DD7C005F6789 /* TeamBUi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBUi.swift; sourceTree = "<group>"; };
+		8DBA0E902A12DD7C005F6789 /* TeamBUi-old.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TeamBUi-old.swift"; sourceTree = "<group>"; };
 		8DBA0E922A12F068005F6789 /* HomeUi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUi.swift; sourceTree = "<group>"; };
 		8DE3A7692A17AAE70024C7FF /* MatchesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchesViewModel.swift; sourceTree = "<group>"; };
 		8DE3A76B2A17AF980024C7FF /* NewMatchPreScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMatchPreScreen.swift; sourceTree = "<group>"; };
 		8DE3A76D2A17D2A50024C7FF /* LiveIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveIndicator.swift; sourceTree = "<group>"; };
 		8DE3A76F2A17D74C0024C7FF /* ToBeDeleted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToBeDeleted.swift; sourceTree = "<group>"; };
 		8DE3A7742A17E4DE0024C7FF /* FirstInningsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstInningsMenu.swift; sourceTree = "<group>"; };
+		8DE3A7762A17F7780024C7FF /* AfterInningsEndButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AfterInningsEndButton.swift; sourceTree = "<group>"; };
+		8DE3A7782A17FB3B0024C7FF /* TeamBUi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamBUi.swift; sourceTree = "<group>"; };
+		8DE3A77A2A17FF080024C7FF /* SecondInningsMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondInningsMenu.swift; sourceTree = "<group>"; };
+		8DE3A77C2A1808140024C7FF /* MatchSummaryUi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchSummaryUi.swift; sourceTree = "<group>"; };
+		8DE3A7802A180DCC0024C7FF /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
 		8DFD7D222A14F5E500C24667 /* CircularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularButton.swift; sourceTree = "<group>"; };
 		8DFD7D5E2A152C9E00C24667 /* ControlPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPanel.swift; sourceTree = "<group>"; };
 		8DFD7D602A152CFB00C24667 /* ThisOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThisOver.swift; sourceTree = "<group>"; };
 		8DFD7D622A152DF000C24667 /*  BattingExtraStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " BattingExtraStats.swift"; sourceTree = "<group>"; };
 		8DFD7D642A152EA400C24667 /* YetToBat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YetToBat.swift; sourceTree = "<group>"; };
-		8DFD7D672A15308000C24667 /* ScoreBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoard.swift; sourceTree = "<group>"; };
-		8DFD7D6B2A15325E00C24667 /* ScoreBoardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoardViewModel.swift; sourceTree = "<group>"; };
+		8DFD7D672A15308000C24667 /* TeamScoreBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamScoreBoard.swift; sourceTree = "<group>"; };
+		8DFD7D6B2A15325E00C24667 /* TeamScoreBoardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamScoreBoardViewModel.swift; sourceTree = "<group>"; };
 		8DFD7D6F2A15633700C24667 /* MainScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScore.swift; sourceTree = "<group>"; };
 		8DFD7D712A15795700C24667 /* ScoreBoardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoardViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -173,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				8DFD7D222A14F5E500C24667 /* CircularButton.swift */,
+				8DE3A7762A17F7780024C7FF /* AfterInningsEndButton.swift */,
 				8DE3A76D2A17D2A50024C7FF /* LiveIndicator.swift */,
 				8DFD7D5E2A152C9E00C24667 /* ControlPanel.swift */,
 				8DFD7D602A152CFB00C24667 /* ThisOver.swift */,
@@ -180,6 +191,7 @@
 				8DFD7D622A152DF000C24667 /*  BattingExtraStats.swift */,
 				8DFD7D6F2A15633700C24667 /* MainScore.swift */,
 				8DE3A7742A17E4DE0024C7FF /* FirstInningsMenu.swift */,
+				8DE3A77A2A17FF080024C7FF /* SecondInningsMenu.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -187,7 +199,8 @@
 		8DFD7D662A15301900C24667 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8DFD7D672A15308000C24667 /* ScoreBoard.swift */,
+				8DFD7D672A15308000C24667 /* TeamScoreBoard.swift */,
+				8DE3A7802A180DCC0024C7FF /* Match.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -195,7 +208,7 @@
 		8DFD7D692A1531B200C24667 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				8DFD7D6B2A15325E00C24667 /* ScoreBoardViewModel.swift */,
+				8DFD7D6B2A15325E00C24667 /* TeamScoreBoardViewModel.swift */,
 				8DE3A7692A17AAE70024C7FF /* MatchesViewModel.swift */,
 			);
 			path = ViewModels;
@@ -206,8 +219,10 @@
 			children = (
 				8DE3A76B2A17AF980024C7FF /* NewMatchPreScreen.swift */,
 				8DBA0E8E2A12DBAF005F6789 /* TeamAUi.swift */,
-				8DBA0E902A12DD7C005F6789 /* TeamBUi.swift */,
+				8DE3A7782A17FB3B0024C7FF /* TeamBUi.swift */,
+				8DBA0E902A12DD7C005F6789 /* TeamBUi-old.swift */,
 				8DBA0E922A12F068005F6789 /* HomeUi.swift */,
+				8DE3A77C2A1808140024C7FF /* MatchSummaryUi.swift */,
 				8DFD7D212A14F5C500C24667 /* Components */,
 				8DE3A76F2A17D74C0024C7FF /* ToBeDeleted.swift */,
 			);
@@ -354,22 +369,27 @@
 			files = (
 				8DBA0E932A12F068005F6789 /* HomeUi.swift in Sources */,
 				8DE3A76C2A17AF980024C7FF /* NewMatchPreScreen.swift in Sources */,
+				8DE3A77D2A1808140024C7FF /* MatchSummaryUi.swift in Sources */,
 				8DFD7D632A152DF000C24667 /*  BattingExtraStats.swift in Sources */,
+				8DE3A7792A17FB3B0024C7FF /* TeamBUi.swift in Sources */,
 				8DE3A7702A17D74C0024C7FF /* ToBeDeleted.swift in Sources */,
 				8DE3A7752A17E4DE0024C7FF /* FirstInningsMenu.swift in Sources */,
 				8DFD7D612A152CFB00C24667 /* ThisOver.swift in Sources */,
+				8DE3A7772A17F7780024C7FF /* AfterInningsEndButton.swift in Sources */,
 				8DFD7D232A14F5E500C24667 /* CircularButton.swift in Sources */,
+				8DE3A77B2A17FF080024C7FF /* SecondInningsMenu.swift in Sources */,
+				8DE3A7812A180DCC0024C7FF /* Match.swift in Sources */,
 				8DE3A76A2A17AAE70024C7FF /* MatchesViewModel.swift in Sources */,
 				8DFD7D702A15633700C24667 /* MainScore.swift in Sources */,
 				8DBA0E8F2A12DBAF005F6789 /* TeamAUi.swift in Sources */,
 				8D11A7012A16D5900071024B /* utils.swift in Sources */,
 				8DFD7D652A152EA400C24667 /* YetToBat.swift in Sources */,
-				8DFD7D6C2A15325E00C24667 /* ScoreBoardViewModel.swift in Sources */,
+				8DFD7D6C2A15325E00C24667 /* TeamScoreBoardViewModel.swift in Sources */,
 				8DE3A76E2A17D2A50024C7FF /* LiveIndicator.swift in Sources */,
 				8DBA0E652A12CE77005F6789 /* FullTossApp.swift in Sources */,
 				8DFD7D5F2A152C9E00C24667 /* ControlPanel.swift in Sources */,
-				8DFD7D682A15308000C24667 /* ScoreBoard.swift in Sources */,
-				8DBA0E912A12DD7C005F6789 /* TeamBUi.swift in Sources */,
+				8DFD7D682A15308000C24667 /* TeamScoreBoard.swift in Sources */,
+				8DBA0E912A12DD7C005F6789 /* TeamBUi-old.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,19 +7,6 @@
 
 import SwiftUI
 
-struct Match: Identifiable {
-  var id = UUID()
-  var firstTeam: ScoreBoardViewModel
-  var secondTeam: ScoreBoardViewModel
-
-  struct CommonInfo {
-    var matchDate: String = getCurrentDate()
-    var winner = ""
-  }
-
-  var commonInfo: CommonInfo // info like who won?
-}
-
 class MatchesViewModel: ObservableObject {
   @Published var matchesList: [Match]
 

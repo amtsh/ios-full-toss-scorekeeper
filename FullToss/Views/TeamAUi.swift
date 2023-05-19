@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct TeamAUi: View {
-  @ObservedObject var team: ScoreBoardViewModel
+  @ObservedObject var team: TeamScoreBoardViewModel
+
   @State private var showMenu: Bool = false
 
-  func addToRuns(runs: Int) { team.reduce(action: ScoreBoardAction.ADDRUNS(runs: runs)) }
-  func handleWicketDownTap() { team.reduce(action: ScoreBoardAction.WICKETDOWN) }
-  func handleWideBallTap() { team.reduce(action: ScoreBoardAction.WIDEBALL) }
-  func handleNoBallTap() { team.reduce(action: ScoreBoardAction.NOBALL) }
+  func addToRuns(runs: Int) { team.reduce(action: TeamScoreBoardAction.ADDRUNS(runs: runs)) }
+  func handleWicketDownTap() { team.reduce(action: TeamScoreBoardAction.WICKETDOWN) }
+  func handleWideBallTap() { team.reduce(action: TeamScoreBoardAction.WIDEBALL) }
+  func handleNoBallTap() { team.reduce(action: TeamScoreBoardAction.NOBALL) }
+  func handleEndFirstInningsTap() { team.reduce(action: TeamScoreBoardAction.ENDINNINGS) }
 
   func handleUndoTap() { team.undo() }
   func handleRedoTap() { team.redo() }
@@ -50,14 +52,20 @@ struct TeamAUi: View {
             thisOver: $team.scoreBoard.overDetails.thisOver
           )
         }
-        ControlPanel(
-          onRunsTap: addToRuns,
-          onWicketDownTap: handleWicketDownTap,
-          onNoBallTap: handleNoBallTap,
-          onWideBallTap: handleWideBallTap,
-          onUndoTap: handleUndoTap,
-          onRedoTap: handleRedoTap
-        )
+
+        if $team.scoreBoard.hasInningsEnded.wrappedValue {
+          AfterInningsEndButton(text: "Start Second Innings", onTap: {})
+        } else {
+          ControlPanel(
+            onRunsTap: addToRuns,
+            onWicketDownTap: handleWicketDownTap,
+            onNoBallTap: handleNoBallTap,
+            onWideBallTap: handleWideBallTap,
+            onUndoTap: handleUndoTap,
+            onRedoTap: handleRedoTap
+          )
+        }
+
       }
       .padding(.top, 0)
       .navigationBarTitleDisplayMode(.inline)
@@ -87,7 +95,7 @@ struct TeamAUi: View {
 
 struct TeamAUi_Previews: PreviewProvider {
   static var previews: some View {
-    let previewTeam = ScoreBoardViewModel("TEAM A", matchOvers: 10);
+    let previewTeam = TeamScoreBoardViewModel("TEAM A", matchOvers: 10);
 
     TeamAUi(team: previewTeam)
   }

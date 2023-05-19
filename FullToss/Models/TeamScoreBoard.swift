@@ -1,12 +1,12 @@
 //
-//  Score.swift
+//  TeamScoreBoard.swift
 //  FullToss
 //
 //  Created by Amit Shinde on 2023-05-17.
 //
 
 // Initial state
-struct ScoreBoard {
+struct TeamScoreBoard {
   var teamName: String
   var matchOvers: Int
   var runs: Int = 0
@@ -30,7 +30,8 @@ struct ScoreBoard {
 
   var overDetails: OverDetails = OverDetails()
   var extras: Extras = Extras()
-  
+
+  var hasInningsEnded: Bool = false
   // Other necessary properties
 }
 

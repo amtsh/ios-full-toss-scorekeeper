@@ -22,8 +22,8 @@ struct NewMatchPreScreen: View {
 
   func onStartMatchTap() {
     let match = Match(
-      firstTeam: ScoreBoardViewModel(firstTeamName, matchOvers: Int(overs)),
-      secondTeam: ScoreBoardViewModel(
+      firstTeam: TeamScoreBoardViewModel(firstTeamName, matchOvers: Int(overs)),
+      secondTeam: TeamScoreBoardViewModel(
         secondTeamName,
         matchOvers: Int(overs)
       ),
