@@ -18,6 +18,12 @@
 		8DBA0E8F2A12DBAF005F6789 /* TeamAUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA0E8E2A12DBAF005F6789 /* TeamAUi.swift */; };
 		8DBA0E912A12DD7C005F6789 /* TeamBUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA0E902A12DD7C005F6789 /* TeamBUi.swift */; };
 		8DBA0E932A12F068005F6789 /* HomeUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA0E922A12F068005F6789 /* HomeUi.swift */; };
+		8DE3A76A2A17AAE70024C7FF /* MatchesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE3A7692A17AAE70024C7FF /* MatchesViewModel.swift */; };
+		8DE3A76C2A17AF980024C7FF /* NewMatchPreScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE3A76B2A17AF980024C7FF /* NewMatchPreScreen.swift */; };
+		8DE3A76E2A17D2A50024C7FF /* LiveIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE3A76D2A17D2A50024C7FF /* LiveIndicator.swift */; };
+		8DE3A7702A17D74C0024C7FF /* ToBeDeleted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE3A76F2A17D74C0024C7FF /* ToBeDeleted.swift */; };
+		8DE3A7732A17D9ED0024C7FF /* UBottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 8DE3A7722A17D9ED0024C7FF /* UBottomSheet */; };
+		8DE3A7752A17E4DE0024C7FF /* FirstInningsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE3A7742A17E4DE0024C7FF /* FirstInningsMenu.swift */; };
 		8DFD7D232A14F5E500C24667 /* CircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD7D222A14F5E500C24667 /* CircularButton.swift */; };
 		8DFD7D5F2A152C9E00C24667 /* ControlPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD7D5E2A152C9E00C24667 /* ControlPanel.swift */; };
 		8DFD7D612A152CFB00C24667 /* ThisOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD7D602A152CFB00C24667 /* ThisOver.swift */; };
@@ -60,6 +66,11 @@
 		8DBA0E8E2A12DBAF005F6789 /* TeamAUi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamAUi.swift; sourceTree = "<group>"; };
 		8DBA0E902A12DD7C005F6789 /* TeamBUi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBUi.swift; sourceTree = "<group>"; };
 		8DBA0E922A12F068005F6789 /* HomeUi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUi.swift; sourceTree = "<group>"; };
+		8DE3A7692A17AAE70024C7FF /* MatchesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchesViewModel.swift; sourceTree = "<group>"; };
+		8DE3A76B2A17AF980024C7FF /* NewMatchPreScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMatchPreScreen.swift; sourceTree = "<group>"; };
+		8DE3A76D2A17D2A50024C7FF /* LiveIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveIndicator.swift; sourceTree = "<group>"; };
+		8DE3A76F2A17D74C0024C7FF /* ToBeDeleted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToBeDeleted.swift; sourceTree = "<group>"; };
+		8DE3A7742A17E4DE0024C7FF /* FirstInningsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstInningsMenu.swift; sourceTree = "<group>"; };
 		8DFD7D222A14F5E500C24667 /* CircularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularButton.swift; sourceTree = "<group>"; };
 		8DFD7D5E2A152C9E00C24667 /* ControlPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPanel.swift; sourceTree = "<group>"; };
 		8DFD7D602A152CFB00C24667 /* ThisOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThisOver.swift; sourceTree = "<group>"; };
@@ -77,6 +88,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DA848AF2A1461CB00B4CFE0 /* FloatingPanel in Frameworks */,
+				8DE3A7732A17D9ED0024C7FF /* UBottomSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,11 +173,13 @@
 			isa = PBXGroup;
 			children = (
 				8DFD7D222A14F5E500C24667 /* CircularButton.swift */,
+				8DE3A76D2A17D2A50024C7FF /* LiveIndicator.swift */,
 				8DFD7D5E2A152C9E00C24667 /* ControlPanel.swift */,
 				8DFD7D602A152CFB00C24667 /* ThisOver.swift */,
 				8DFD7D642A152EA400C24667 /* YetToBat.swift */,
 				8DFD7D622A152DF000C24667 /*  BattingExtraStats.swift */,
 				8DFD7D6F2A15633700C24667 /* MainScore.swift */,
+				8DE3A7742A17E4DE0024C7FF /* FirstInningsMenu.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -182,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				8DFD7D6B2A15325E00C24667 /* ScoreBoardViewModel.swift */,
+				8DE3A7692A17AAE70024C7FF /* MatchesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -189,10 +204,12 @@
 		8DFD7D6A2A1531D100C24667 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8DE3A76B2A17AF980024C7FF /* NewMatchPreScreen.swift */,
 				8DBA0E8E2A12DBAF005F6789 /* TeamAUi.swift */,
 				8DBA0E902A12DD7C005F6789 /* TeamBUi.swift */,
 				8DBA0E922A12F068005F6789 /* HomeUi.swift */,
 				8DFD7D212A14F5C500C24667 /* Components */,
+				8DE3A76F2A17D74C0024C7FF /* ToBeDeleted.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -215,6 +232,7 @@
 			name = FullToss;
 			packageProductDependencies = (
 				8D4D126B2A14389C00498343 /* FloatingPanel */,
+				8DE3A7722A17D9ED0024C7FF /* UBottomSheet */,
 			);
 			productName = FullToss;
 			productReference = 8DBA0E612A12CE77005F6789 /* FullToss.app */;
@@ -290,6 +308,7 @@
 			mainGroup = 8DBA0E582A12CE77005F6789;
 			packageReferences = (
 				8D4D126A2A14389C00498343 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
+				8DE3A7712A17D9ED0024C7FF /* XCRemoteSwiftPackageReference "UBottomSheet" */,
 			);
 			productRefGroup = 8DBA0E622A12CE77005F6789 /* Products */;
 			projectDirPath = "";
@@ -334,14 +353,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DBA0E932A12F068005F6789 /* HomeUi.swift in Sources */,
+				8DE3A76C2A17AF980024C7FF /* NewMatchPreScreen.swift in Sources */,
 				8DFD7D632A152DF000C24667 /*  BattingExtraStats.swift in Sources */,
+				8DE3A7702A17D74C0024C7FF /* ToBeDeleted.swift in Sources */,
+				8DE3A7752A17E4DE0024C7FF /* FirstInningsMenu.swift in Sources */,
 				8DFD7D612A152CFB00C24667 /* ThisOver.swift in Sources */,
 				8DFD7D232A14F5E500C24667 /* CircularButton.swift in Sources */,
+				8DE3A76A2A17AAE70024C7FF /* MatchesViewModel.swift in Sources */,
 				8DFD7D702A15633700C24667 /* MainScore.swift in Sources */,
 				8DBA0E8F2A12DBAF005F6789 /* TeamAUi.swift in Sources */,
 				8D11A7012A16D5900071024B /* utils.swift in Sources */,
 				8DFD7D652A152EA400C24667 /* YetToBat.swift in Sources */,
 				8DFD7D6C2A15325E00C24667 /* ScoreBoardViewModel.swift in Sources */,
+				8DE3A76E2A17D2A50024C7FF /* LiveIndicator.swift in Sources */,
 				8DBA0E652A12CE77005F6789 /* FullTossApp.swift in Sources */,
 				8DFD7D5F2A152C9E00C24667 /* ControlPanel.swift in Sources */,
 				8DFD7D682A15308000C24667 /* ScoreBoard.swift in Sources */,
@@ -687,6 +711,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		8DE3A7712A17D9ED0024C7FF /* XCRemoteSwiftPackageReference "UBottomSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/OfTheWolf/UBottomSheet";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -694,6 +726,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8D4D126A2A14389C00498343 /* XCRemoteSwiftPackageReference "FloatingPanel" */;
 			productName = FloatingPanel;
+		};
+		8DE3A7722A17D9ED0024C7FF /* UBottomSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8DE3A7712A17D9ED0024C7FF /* XCRemoteSwiftPackageReference "UBottomSheet" */;
+			productName = UBottomSheet;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

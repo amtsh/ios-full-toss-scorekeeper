@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct TeamAUi: View {
-  @StateObject private var team = ScoreBoardViewModel("TEAM A", matchOvers: 10)
+  @ObservedObject var team: ScoreBoardViewModel
+  @State private var showMenu: Bool = false
 
   func addToRuns(runs: Int) { team.reduce(action: ScoreBoardAction.ADDRUNS(runs: runs)) }
   func handleWicketDownTap() { team.reduce(action: ScoreBoardAction.WICKETDOWN) }
@@ -60,12 +61,35 @@ struct TeamAUi: View {
       }
       .padding(.top, 0)
       .navigationBarTitleDisplayMode(.inline)
+      .navigationTitle("Hello")
+      .navigationBarItems(
+        trailing: Button(action: {
+          showMenu.toggle()
+        }) {
+          Image(systemName: "ellipsis")
+        }
+          .sheet(isPresented: $showMenu) {
+            FirstInningsMenu()
+              .presentationDetents([.fraction(0.3)])
+              .presentationDragIndicator(.visible)
+          }
+      )
+      .toolbar {
+        ToolbarItem(placement: .principal) {
+          LiveIndicator()
+          .frame(maxWidth: .infinity, alignment: .top)
+          .clipped()
+        }
+      }
+
   }
 }
 
 struct TeamAUi_Previews: PreviewProvider {
   static var previews: some View {
-    TeamAUi()
+    let previewTeam = ScoreBoardViewModel("TEAM A", matchOvers: 10);
+
+    TeamAUi(team: previewTeam)
   }
 }
 

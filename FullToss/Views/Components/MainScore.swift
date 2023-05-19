@@ -20,7 +20,7 @@ struct MainScore: View {
     HStack() {
       Text("\(teamName)")
         .font(.system(.title2, weight: .bold))
-        .foregroundColor(.green)
+        .foregroundColor(.secondary)
       Spacer()
       Text("\(totalRuns)-\(totalWicketsDown)")
         .frame(maxWidth: .infinity, alignment: .trailing)

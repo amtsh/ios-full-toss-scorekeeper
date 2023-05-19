@@ -6,60 +6,39 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct HomeUi: View {
+  @StateObject var matches = MatchesViewModel()
 
   var body: some View {
     NavigationView {
       VStack {
-        ScrollView(showsIndicators: false) {
-          VStack {
-            ForEach(0..<5) { i in // Replace with your data model here
-              Divider()
-                .opacity(0.5)
-              HStack(spacing: 0) {
-                VStack {
-                  Text("Cricket Match \(i+1)")
-                    .font(.headline)
-                    .padding(.bottom, 2)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .clipped()
-                  Text("30 May 2023")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .clipped()
-                    .foregroundColor(.secondary)
-                }
-                Spacer()
-                Image(systemName: "ellipsis")
-              }
-              .padding(.vertical)
-              .font(.subheadline)
+        VStack {
+          List(matches.matchesList) { match in // Replace with your data model here
+            NavigationLink(destination: TeamAUi(team: match.firstTeam)) {
+
+              MatchRow(
+                title: "\(match.firstTeam.scoreBoard.teamName) vs \(match.secondTeam.scoreBoard.teamName)",
+                matchDate: "\(match.commonInfo.matchDate)"
+              )
             }
+            .listRowBackground(Color.clear)
           }
-        }
-        .padding(.top, 1)
-        Spacer()
-        NavigationLink(destination: TeamAUi()) {
-          Text("New Match")
-            .font(.headline)
+          .listStyle(PlainListStyle())
+          .scrollIndicators(.hidden)
         }
 
-        Text("New Match")
-          .font(.system(.callout, weight: .semibold))
-          .padding()
-          .frame(maxWidth: .infinity)
-          .clipped()
-          .foregroundColor(.white)
-          .background(.blue)
-          .mask { RoundedRectangle(cornerRadius: 16, style: .continuous) }
-          .padding(.bottom, 60)
+        Spacer()
+        NewMatchButtonSection(matches: matches)
+          .padding(.vertical, 50)
+          .padding(.horizontal)
+
       }
       .frame(maxWidth: .infinity)
       .padding(.top)
-      .padding(.bottom, 0)
-      .padding(.horizontal, 29)
-      .navigationTitle("Matches")
       .clipped()
+      .navigationTitle("Matches")
     }
   }
 
@@ -70,3 +49,61 @@ struct HomeUi_Previews: PreviewProvider {
     HomeUi()
   }
 }
+
+struct ButtonFull: View {
+  var text: String = "Button"
+  var icon = ""
+
+  var body: some View {
+    Label(text, systemImage: icon)
+      .font(.system(.callout, weight: .semibold))
+      .padding(.vertical, 10)
+      .frame(maxWidth: .infinity)
+      .clipped()
+  }
+}
+
+struct MatchRow: View {
+  var title: String = "Cricket Match #"
+  var matchDate = getCurrentDate()
+
+  var body: some View {
+    HStack(spacing: 0) {
+      VStack {
+        Text(title)
+          .font(.headline)
+          .padding(.bottom, 2)
+          .frame(maxWidth: .infinity, alignment: .leading)
+          .clipped()
+        Text(matchDate)
+          .frame(maxWidth: .infinity, alignment: .leading)
+          .clipped()
+          .foregroundColor(.secondary)
+      }
+    }
+    .font(.subheadline)
+  }
+}
+
+struct NewMatchButtonSection: View {
+  @State private var showNewMatchPreScreenSheet: Bool = false
+  @ObservedObject var matches: MatchesViewModel
+
+  var body: some View {
+    Button(
+      action: {
+        showNewMatchPreScreenSheet.toggle()
+      },
+      label: {
+        ButtonFull(text: "New Match")
+      }
+    )
+    .buttonStyle(.borderedProminent)
+    .sheet(isPresented: $showNewMatchPreScreenSheet) {
+      NewMatchPreScreen(matches: matches)
+        .presentationDetents([.fraction(0.75), .large])
+        .presentationDragIndicator(.visible)
+    }
+  }
+}
+
