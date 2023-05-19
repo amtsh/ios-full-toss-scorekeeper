@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Match: Identifiable {
-  var id = UUID()
+  var id: UUID
   var firstTeam: TeamScoreBoardViewModel
   var secondTeam: TeamScoreBoardViewModel
 
@@ -18,4 +18,11 @@ struct Match: Identifiable {
   }
 
   var commonInfo: CommonInfo // info like who won?
+
+  init(id: UUID = UUID(), firstTeam: TeamScoreBoardViewModel, secondTeam: TeamScoreBoardViewModel, commonInfo: CommonInfo) {
+    self.id = id
+    self.firstTeam = firstTeam
+    self.secondTeam = secondTeam
+    self.commonInfo = commonInfo
+  }
 }
