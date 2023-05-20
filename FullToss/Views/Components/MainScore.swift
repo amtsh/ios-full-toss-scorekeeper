@@ -9,12 +9,12 @@ import SwiftUI
 
 struct MainScore: View {
 
-  @Binding var teamName: String
-  @Binding var matchOvers: Int
-  @Binding var totalRuns: Int
-  @Binding var totalWicketsDown: Int
-  @Binding var oversDelivered: Int
-  @Binding var ballsDelivered: Int
+  var teamName: String
+  var matchOvers: Int
+  var totalRuns: Int
+  var totalWicketsDown: Int
+  var oversDelivered: Int
+  var ballsDelivered: Int
 
   var body: some View {
     HStack() {

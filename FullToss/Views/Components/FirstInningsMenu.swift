@@ -38,8 +38,7 @@ struct FirstInningsMenu: View {
 
         Section {
           Button(
-            action: {
-            },
+            action: {},
             label: {
               ButtonFull(text: "Start Second Innings", icon: "forward.fill")
             }

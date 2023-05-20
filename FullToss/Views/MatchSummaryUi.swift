@@ -9,26 +9,27 @@ import SwiftUI
 
 struct MatchSummaryUi: View {
 
-  var match: Match
+  @Binding var match: Match
 
   var body: some View {
     VStack {
       Text("Match Summary of")
-      Text("\(match.firstTeam.scoreBoard.teamName)")
-      Text("\(match.secondTeam.scoreBoard.teamName)")
+      Text("\(match.firstTeam.teamName)")
+      Text("\(match.secondTeam.teamName)")
     }
-
+    .navigationTitle("Match Summary")
   }
 }
 
 struct MatchSummaryUi_Previews: PreviewProvider {
   static var previews: some View {
-    MatchSummaryUi(
-      match: Match(id: UUID(),
-                   firstTeam: TeamScoreBoardViewModel("TEAM A", matchOvers: 10),
-                   secondTeam: TeamScoreBoardViewModel("TEAM B", matchOvers: 10)
-                  )
-    )
+    let teamA = TeamScoreBoard(teamName: "TEAM A", matchOvers: 10)
+    let teamB = TeamScoreBoard(teamName: "TEAM B", matchOvers: 10)
+    let match = Match(firstTeam: teamA, secondTeam: teamB)
+
+    NavigationStack {
+      MatchSummaryUi(match: .constant(match))
+    }
   }
 }
 

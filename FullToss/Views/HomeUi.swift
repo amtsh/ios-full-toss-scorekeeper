@@ -11,29 +11,28 @@ import Foundation
 struct HomeUi: View {
   @StateObject var matches = MatchesManager()
 
-  func getDestination(match: Match) -> AnyView {
-    if !match.firstTeam.scoreBoard.hasInningsEnded {
-      return AnyView(TeamAUi(team: match.firstTeam))
+  func getDestination(match: Binding<Match>) -> AnyView {
+    if !match.firstTeam.hasInningsEnded.wrappedValue {
+      return AnyView(TeamAUi(match: match))
     }
 
-    if !match.secondTeam.scoreBoard.hasInningsEnded {
-      return AnyView(TeamBUi(team: match.secondTeam))
+    if !match.secondTeam.hasInningsEnded.wrappedValue {
+      return AnyView(TeamBUi(match: match))
     }
 
     return AnyView(MatchSummaryUi(match: match))
   }
 
   var body: some View {
-    NavigationView {
+    NavigationStack {
       VStack {
         VStack {
-          List(matches.matchesList) { match in // Replace with your data model here
+          List($matches.matchesList) { match in // Replace with your data model here
 
-            NavigationLink(destination: getDestination(match: match)) {
-
+            NavigationLink(destination: TeamAUi(match: match)) {
               MatchRow(
-                title: "\(match.firstTeam.scoreBoard.teamName) vs \(match.secondTeam.scoreBoard.teamName)",
-                matchDate: "\(match.matchDate)"
+                title: "\(match.firstTeam.teamName.wrappedValue) vs \(match.secondTeam.teamName.wrappedValue)",
+                matchDate: "\(match.matchDate.wrappedValue)"
               )
             }
             .listRowBackground(Color.clear)
@@ -59,7 +58,10 @@ struct HomeUi: View {
 
 struct HomeUi_Previews: PreviewProvider {
   static var previews: some View {
-    HomeUi()
+    NavigationStack {
+      HomeUi()
+    }
+
   }
 }
 

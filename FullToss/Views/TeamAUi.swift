@@ -8,18 +8,32 @@
 import SwiftUI
 
 struct TeamAUi: View {
-  @ObservedObject var team: TeamScoreBoardViewModel
+//  @ObservedObject var team: TeamScoreBoard
+  @Binding var match: Match
 
   @State private var showMenu: Bool = false
 
-  func addToRuns(runs: Int) { team.reduce(action: TeamScoreBoardAction.ADDRUNS(runs: runs)) }
-  func handleWicketDownTap() { team.reduce(action: TeamScoreBoardAction.WICKETDOWN) }
-  func handleWideBallTap() { team.reduce(action: TeamScoreBoardAction.WIDEBALL) }
-  func handleNoBallTap() { team.reduce(action: TeamScoreBoardAction.NOBALL) }
-  func handleEndFirstInningsTap() { team.reduce(action: TeamScoreBoardAction.ENDINNINGS) }
-
-  func handleUndoTap() { team.undo() }
-  func handleRedoTap() { team.redo() }
+  func addToRuns(runs: Int) {
+    match.firstTeam.act(.ADDRUNS(runs))
+  }
+  func handleWicketDownTap() {
+    match.firstTeam.act(.WICKETDOWN)
+  }
+  func handleWideBallTap() {
+    match.firstTeam.act(.WIDEBALL)
+  }
+  func handleNoBallTap() {
+    match.firstTeam.act(.NOBALL)
+  }
+  func handleEndFirstInningsTap() {
+    match.firstTeam.act(.ENDINNINGS)
+  }
+  func handleUndoTap() {
+    match.firstTeam.act(.UNDO)
+  }
+  func handleRedoTap() {
+    match.firstTeam.act(.REDO)
+  }
 
   var body: some View {
       VStack {
@@ -27,18 +41,18 @@ struct TeamAUi: View {
           ScrollView(showsIndicators: false) {
             VStack {
               MainScore(
-                teamName: $team.scoreBoard.teamName,
-                matchOvers: $team.scoreBoard.matchOvers,
-                totalRuns: $team.scoreBoard.runs,
-                totalWicketsDown: $team.scoreBoard.wicketsDown,
-                oversDelivered: $team.scoreBoard.oversDelivered,
-                ballsDelivered: $team.scoreBoard.ballsDelivered
+                teamName: match.firstTeam.teamName,
+                matchOvers: match.firstTeam.matchOvers,
+                totalRuns: match.firstTeam.runs,
+                totalWicketsDown: match.firstTeam.wicketsDown,
+                oversDelivered: match.firstTeam.oversDelivered,
+                ballsDelivered: match.firstTeam.ballsDelivered
               )
               BattingExtraStats(
-                currentRunRate: $team.scoreBoard.currentRunRate,
-                projectedRuns: $team.scoreBoard.projectedRuns,
-                wideBalls: $team.scoreBoard.extras.wideBalls,
-                noBalls: $team.scoreBoard.extras.noBalls
+                currentRunRate: match.firstTeam.currentRunRate,
+                projectedRuns: match.firstTeam.projectedRuns,
+                wideBalls: match.firstTeam.extras.wideBalls,
+                noBalls: match.firstTeam.extras.noBalls
               )
             }
           }
@@ -47,14 +61,16 @@ struct TeamAUi: View {
           Divider()
 
           ThisOver(
-            runsInCurrentOver: $team.scoreBoard.overDetails.runsInCurrentOver,
-            ballsLeftInCurrentOver: $team.scoreBoard.overDetails.ballsLeftInCurrentOver,
-            thisOver: $team.scoreBoard.overDetails.thisOver
+            runsInCurrentOver: match.firstTeam.overDetails.runsInCurrentOver,
+            ballsLeftInCurrentOver: match.firstTeam.overDetails.ballsLeftInCurrentOver,
+            thisOver: match.firstTeam.overDetails.thisOver
           )
         }
 
-        if $team.scoreBoard.hasInningsEnded.wrappedValue {
-          AfterInningsEndButton(text: "Start Second Innings", onTap: {})
+        if match.firstTeam.hasInningsEnded {
+          NavigationLink(destination: TeamBUi(match: $match)) {
+            ButtonFull(text: "Goto Second Innings", icon: "forward.fill")
+          }
         } else {
           ControlPanel(
             onRunsTap: addToRuns,
@@ -69,7 +85,7 @@ struct TeamAUi: View {
       }
       .padding(.top, 0)
       .navigationBarTitleDisplayMode(.inline)
-      .navigationTitle("Hello")
+      .navigationTitle("")
       .navigationBarItems(
         trailing: Button(action: {
           showMenu.toggle()
@@ -95,9 +111,14 @@ struct TeamAUi: View {
 
 struct TeamAUi_Previews: PreviewProvider {
   static var previews: some View {
-    let previewTeam = TeamScoreBoardViewModel("TEAM A", matchOvers: 10);
+    let teamA = TeamScoreBoard(teamName: "TEAM A", matchOvers: 10)
+    let teamB = TeamScoreBoard(teamName: "TEAM B", matchOvers: 10)
 
-    TeamAUi(team: previewTeam)
+    let match = Match(firstTeam: teamA, secondTeam: teamB)
+
+    NavigationStack {
+      TeamAUi(match: .constant(match))
+    }
   }
 }
 

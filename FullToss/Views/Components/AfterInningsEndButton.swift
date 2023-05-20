@@ -10,12 +10,12 @@ import SwiftUI
 struct AfterInningsEndButton: View {
 
   var text: String
-  var onTap: () -> Void
+//  var onTap: () -> Void
 
   var body: some View {
     Section {
       Button(
-        action: onTap,
+        action: {},
         label: {
           ButtonFull(text: text, icon: "forward.fill")
         }
@@ -27,7 +27,7 @@ struct AfterInningsEndButton: View {
 
 struct EndFirstInningsButton_Previews: PreviewProvider {
   static var previews: some View {
-    AfterInningsEndButton(text: "Start Second Innings", onTap: {})
+    AfterInningsEndButton(text: "Start Second Innings")
   }
 }
 

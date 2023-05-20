@@ -14,13 +14,13 @@ enum MatchStatus {
 
 struct Match: Identifiable {
   var id: UUID
-  var firstTeam: TeamScoreBoardViewModel
-  var secondTeam: TeamScoreBoardViewModel
+  var firstTeam: TeamScoreBoard
+  var secondTeam: TeamScoreBoard
   var matchStatus: MatchStatus
-  var matchDate: String = getCurrentDate()
+  var matchDate: String = ""
   var winner = ""
 
-  init(id: UUID = UUID(), firstTeam: TeamScoreBoardViewModel, secondTeam: TeamScoreBoardViewModel) {
+  init(id: UUID = UUID(), firstTeam: TeamScoreBoard, secondTeam: TeamScoreBoard) {
     self.id = id
     self.firstTeam = firstTeam
     self.secondTeam = secondTeam

@@ -8,17 +8,33 @@
 import SwiftUI
 
 struct TeamBUi: View {
-  @ObservedObject var team: TeamScoreBoardViewModel
+//  @ObservedObject var team: TeamScoreBoardViewModel
+  @Binding var match: Match
   @State private var showMenu: Bool = false
 
-  func addToRuns(runs: Int) { team.reduce(action: TeamScoreBoardAction.ADDRUNS(runs: runs)) }
-  func handleWicketDownTap() { team.reduce(action: TeamScoreBoardAction.WICKETDOWN) }
-  func handleWideBallTap() { team.reduce(action: TeamScoreBoardAction.WIDEBALL) }
-  func handleNoBallTap() { team.reduce(action: TeamScoreBoardAction.NOBALL) }
-  func handleEndSecondInningsTap() { team.reduce(action: TeamScoreBoardAction.ENDINNINGS) }
+  func addToRuns(runs: Int) {
+    match.secondTeam.act(.ADDRUNS(runs))
+  }
+  func handleWicketDownTap() {
+    match.secondTeam.act(.WICKETDOWN)
+  }
+  func handleWideBallTap() {
+    match.secondTeam.act(.WIDEBALL)
+  }
+  func handleNoBallTap() {
+    match.secondTeam.act(.NOBALL)
 
-  func handleUndoTap() { team.undo() }
-  func handleRedoTap() { team.redo() }
+  }
+  func handleEndFirstInningsTap() {
+    match.secondTeam.act(.ENDINNINGS)
+  }
+
+  func handleUndoTap() {
+    match.secondTeam.act(.UNDO)
+  }
+  func handleRedoTap() {
+    match.secondTeam.act(.REDO)
+  }
 
   var body: some View {
       VStack {
@@ -26,11 +42,11 @@ struct TeamBUi: View {
           ScrollView(showsIndicators: false) {
             VStack(spacing: 0) {
               HStack {
-                Text("Team A")
+                Text("\(match.firstTeam.teamName)")
                   .font(.headline)
                   .foregroundColor(.secondary)
                 Spacer()
-                Text("70/4 (10)")
+                Text("\(match.firstTeam.runs)-\(match.firstTeam.wicketsDown) (\(match.firstTeam.oversDelivered).\(match.firstTeam.ballsDelivered))")
                   .font(.system(.headline, weight: .black))
                   .foregroundColor(.secondary)
               }
@@ -40,18 +56,18 @@ struct TeamBUi: View {
               Divider()
 
               MainScore(
-                teamName: $team.scoreBoard.teamName,
-                matchOvers: $team.scoreBoard.matchOvers,
-                totalRuns: $team.scoreBoard.runs,
-                totalWicketsDown: $team.scoreBoard.wicketsDown,
-                oversDelivered: $team.scoreBoard.oversDelivered,
-                ballsDelivered: $team.scoreBoard.ballsDelivered
+                teamName: match.secondTeam.teamName,
+                matchOvers: match.secondTeam.matchOvers,
+                totalRuns: match.secondTeam.runs,
+                totalWicketsDown: match.secondTeam.wicketsDown,
+                oversDelivered: match.secondTeam.oversDelivered,
+                ballsDelivered: match.secondTeam.ballsDelivered
               )
               BattingExtraStats(
-                currentRunRate: $team.scoreBoard.currentRunRate,
-                projectedRuns: $team.scoreBoard.projectedRuns,
-                wideBalls: $team.scoreBoard.extras.wideBalls,
-                noBalls: $team.scoreBoard.extras.noBalls
+                currentRunRate: match.secondTeam.currentRunRate,
+                projectedRuns: match.secondTeam.projectedRuns,
+                wideBalls: match.secondTeam.extras.wideBalls,
+                noBalls: match.secondTeam.extras.noBalls
               )
             }
           }
@@ -65,14 +81,16 @@ struct TeamBUi: View {
           Divider()
 
           ThisOver(
-            runsInCurrentOver: $team.scoreBoard.overDetails.runsInCurrentOver,
-            ballsLeftInCurrentOver: $team.scoreBoard.overDetails.ballsLeftInCurrentOver,
-            thisOver: $team.scoreBoard.overDetails.thisOver
+            runsInCurrentOver: match.secondTeam.overDetails.runsInCurrentOver,
+            ballsLeftInCurrentOver: match.secondTeam.overDetails.ballsLeftInCurrentOver,
+            thisOver: match.secondTeam.overDetails.thisOver
           )
         }
 
-        if $team.scoreBoard.hasInningsEnded.wrappedValue {
-          AfterInningsEndButton(text: "See Match Highlights", onTap: {})
+        if match.secondTeam.hasInningsEnded {
+          NavigationLink(destination: MatchSummaryUi(match: $match)) {
+            ButtonFull(text: "Goto Match Highlights", icon: "forward.fill")
+          }
         } else {
           ControlPanel(
             onRunsTap: addToRuns,
@@ -87,7 +105,7 @@ struct TeamBUi: View {
       }
       .padding(.top, 0)
       .navigationBarTitleDisplayMode(.inline)
-      .navigationTitle("Hello")
+      .navigationTitle("")
       .navigationBarItems(
         trailing: Button(action: {
           showMenu.toggle()
@@ -113,9 +131,14 @@ struct TeamBUi: View {
 
 struct TeamBUi_Previews: PreviewProvider {
   static var previews: some View {
-    let previewTeam = TeamScoreBoardViewModel("TEAM B", matchOvers: 10);
+    let teamA = TeamScoreBoard(teamName: "TEAM A", matchOvers: 10)
+    let teamB = TeamScoreBoard(teamName: "TEAM B", matchOvers: 10)
 
-    TeamBUi(team: previewTeam)
+    let match = Match(firstTeam: teamA, secondTeam: teamB)
+
+    NavigationStack {
+      TeamBUi(match: .constant(match))
+    }
   }
 }
 

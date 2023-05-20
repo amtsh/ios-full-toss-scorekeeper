@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+/*
 
 enum TeamScoreBoardAction {
   case ADDRUNS(runs: Int)
@@ -88,7 +89,7 @@ class TeamScoreBoardViewModel: ObservableObject {
     scoreBoard.runs += runs
 
     updateRunRate()
-    updateProjectedRuns()
+//    updateProjectedRuns()
   }
 
   private func updateRunRate() {
@@ -98,9 +99,9 @@ class TeamScoreBoardViewModel: ObservableObject {
     }
   }
 
-  private func updateProjectedRuns() {
-    scoreBoard.projectedRuns = Int(scoreBoard.currentRunRate * Float(scoreBoard.matchOvers))
-  }
+//  private func updateProjectedRuns() {
+//    scoreBoard.projectedRuns = Int(scoreBoard.currentRunRate * Float(scoreBoard.matchOvers))
+//  }
 
   private func updateWicketsDown() {
     scoreBoard.wicketsDown += 1
@@ -138,3 +139,5 @@ class TeamScoreBoardViewModel: ObservableObject {
     }
   }
 }
+
+*/

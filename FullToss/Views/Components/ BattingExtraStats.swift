@@ -9,10 +9,10 @@ import SwiftUI
 
 struct BattingExtraStats: View {
 
-  @Binding var currentRunRate: Float
-  @Binding var projectedRuns: Int
-  @Binding var wideBalls: Int
-  @Binding var noBalls: Int
+ var currentRunRate: Float
+ var projectedRuns: Int
+ var wideBalls: Int
+ var noBalls: Int
 
   var body: some View {
     VStack {

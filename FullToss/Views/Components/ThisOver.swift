@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ThisOver: View {
 
-  @Binding var runsInCurrentOver: Int
-  @Binding var ballsLeftInCurrentOver: Int
-  @Binding var thisOver: [String]
+  var runsInCurrentOver: Int
+  var ballsLeftInCurrentOver: Int
+  var thisOver: [String]
 
   var body: some View {
     HStack {
