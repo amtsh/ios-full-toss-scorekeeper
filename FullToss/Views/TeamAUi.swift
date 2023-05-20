@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct TeamAUi: View {
-//  @ObservedObject var team: TeamScoreBoard
   @Binding var match: Match
 
   @State private var showMenu: Bool = false
@@ -71,6 +70,9 @@ struct TeamAUi: View {
           NavigationLink(destination: TeamBUi(match: $match)) {
             ButtonFull(text: "Goto Second Innings", icon: "forward.fill")
           }
+          .buttonStyle(.bordered)
+          .padding(.horizontal)
+
         } else {
           ControlPanel(
             onRunsTap: addToRuns,
@@ -81,6 +83,7 @@ struct TeamAUi: View {
             onRedoTap: handleRedoTap
           )
         }
+
 
       }
       .padding(.top, 0)

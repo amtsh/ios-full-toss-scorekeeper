@@ -32,7 +32,8 @@ struct HomeUi: View {
             NavigationLink(destination: TeamAUi(match: match)) {
               MatchRow(
                 title: "\(match.firstTeam.teamName.wrappedValue) vs \(match.secondTeam.teamName.wrappedValue)",
-                matchDate: "\(match.matchDate.wrappedValue)"
+                matchDate: "\(match.matchDate.wrappedValue)",
+                isMatchEnded: match.firstTeam.hasInningsEnded.wrappedValue && match.secondTeam.hasInningsEnded.wrappedValue
               )
             }
             .listRowBackground(Color.clear)
@@ -40,20 +41,19 @@ struct HomeUi: View {
           .listStyle(PlainListStyle())
           .scrollIndicators(.hidden)
         }
-
-        Spacer()
-        NewMatchButtonSection(matches: matches)
-          .padding(.vertical, 50)
-          .padding(.horizontal)
-
       }
-      .frame(maxWidth: .infinity)
-      .padding(.top)
-      .clipped()
-      .navigationTitle("Matches")
-    }
-  }
 
+      Spacer()
+      NewMatchButtonSection(matches: matches)
+        .padding(.vertical, 50)
+        .padding(.horizontal)
+
+    }
+    .frame(maxWidth: .infinity)
+    .padding(.top)
+    .clipped()
+    .navigationTitle("Matches")
+  }
 }
 
 struct HomeUi_Previews: PreviewProvider {
@@ -81,9 +81,13 @@ struct ButtonFull: View {
 struct MatchRow: View {
   var title: String = "Cricket Match #"
   var matchDate = getCurrentDate()
+  var isMatchEnded: Bool = false
 
   var body: some View {
-    HStack(spacing: 0) {
+    HStack() {
+      Image(systemName: "circle.fill")
+        .foregroundColor(isMatchEnded ? .gray : .green)
+        .padding(.horizontal)
       VStack {
         Text(title)
           .font(.headline)
