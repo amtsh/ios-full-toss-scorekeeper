@@ -9,7 +9,7 @@ import SwiftUI
 import Foundation
 
 struct HomeUi: View {
-  @StateObject var matches = MatchesViewModel()
+  @StateObject var matches = MatchesManager()
 
   func getDestination(match: Match) -> AnyView {
     if !match.firstTeam.scoreBoard.hasInningsEnded {
@@ -33,7 +33,7 @@ struct HomeUi: View {
 
               MatchRow(
                 title: "\(match.firstTeam.scoreBoard.teamName) vs \(match.secondTeam.scoreBoard.teamName)",
-                matchDate: "\(match.commonInfo.matchDate)"
+                matchDate: "\(match.matchDate)"
               )
             }
             .listRowBackground(Color.clear)
@@ -100,7 +100,7 @@ struct MatchRow: View {
 
 struct NewMatchButtonSection: View {
   @State private var showNewMatchPreScreenSheet: Bool = false
-  @ObservedObject var matches: MatchesViewModel
+  @ObservedObject var matches: MatchesManager
 
   var body: some View {
     Button(

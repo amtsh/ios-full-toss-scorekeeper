@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NewMatchPreScreen: View {
-  @ObservedObject var matches: MatchesViewModel
+  @ObservedObject var matches: MatchesManager
 
   @State private var overs: Float = 10
   @State private var oversInput: String = "10"
@@ -26,11 +26,10 @@ struct NewMatchPreScreen: View {
       secondTeam: TeamScoreBoardViewModel(
         secondTeamName,
         matchOvers: Int(overs)
-      ),
-      commonInfo: Match.CommonInfo()
+      )
     )
 
-    matches.addMatch(match: match)
+    matches.createMatch(match: match)
     dismiss()
   }
 
@@ -100,6 +99,6 @@ struct NewMatchPreScreen: View {
 
 struct NewMatchPreScreen_Previews: PreviewProvider {
   static var previews: some View {
-    NewMatchPreScreen(matches: MatchesViewModel())
+    NewMatchPreScreen(matches: MatchesManager())
   }
 }

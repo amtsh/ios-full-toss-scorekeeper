@@ -26,8 +26,7 @@ struct MatchSummaryUi_Previews: PreviewProvider {
     MatchSummaryUi(
       match: Match(id: UUID(),
                    firstTeam: TeamScoreBoardViewModel("TEAM A", matchOvers: 10),
-                   secondTeam: TeamScoreBoardViewModel("TEAM B", matchOvers: 10),
-                   commonInfo: Match.CommonInfo()
+                   secondTeam: TeamScoreBoardViewModel("TEAM B", matchOvers: 10)
                   )
     )
   }

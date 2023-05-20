@@ -7,22 +7,24 @@
 
 import SwiftUI
 
+enum MatchStatus {
+  case inProgress
+  case ended
+}
+
 struct Match: Identifiable {
   var id: UUID
   var firstTeam: TeamScoreBoardViewModel
   var secondTeam: TeamScoreBoardViewModel
+  var matchStatus: MatchStatus
+  var matchDate: String = getCurrentDate()
+  var winner = ""
 
-  struct CommonInfo {
-    var matchDate: String = getCurrentDate()
-    var winner = ""
-  }
-
-  var commonInfo: CommonInfo // info like who won?
-
-  init(id: UUID = UUID(), firstTeam: TeamScoreBoardViewModel, secondTeam: TeamScoreBoardViewModel, commonInfo: CommonInfo) {
+  init(id: UUID = UUID(), firstTeam: TeamScoreBoardViewModel, secondTeam: TeamScoreBoardViewModel) {
     self.id = id
     self.firstTeam = firstTeam
     self.secondTeam = secondTeam
-    self.commonInfo = commonInfo
+    self.matchDate = getCurrentDate()
+    self.matchStatus = .inProgress
   }
 }

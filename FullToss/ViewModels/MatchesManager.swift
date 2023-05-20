@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-class MatchesViewModel: ObservableObject {
+class MatchesManager: ObservableObject {
   @Published var matchesList: [Match]
 
   init() {
     self.matchesList = []
   }
 
-  func addMatch(match: Match) {
+  func createMatch(match: Match) {
     self.matchesList.append(match)
   }
 }
