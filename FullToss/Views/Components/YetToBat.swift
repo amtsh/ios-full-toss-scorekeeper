@@ -9,9 +9,11 @@ import SwiftUI
 
 struct YetToBat: View {
 
+  var teamName: String = "TEAM B"
+
   var body: some View {
     HStack {
-      Text("TEAM B")
+      Text("\(teamName)")
         .font(.system(.subheadline, weight: .medium))
         .foregroundColor(Color(.tertiaryLabel))
       Spacer()

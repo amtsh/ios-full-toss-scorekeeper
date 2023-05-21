@@ -56,7 +56,7 @@ struct TeamAUi: View {
             }
           }
           Divider()
-          YetToBat()
+          YetToBat(teamName: match.secondTeam.teamName)
           Divider()
 
           ThisOver(

@@ -23,15 +23,19 @@ struct HomeUi: View {
     return AnyView(MatchSummaryUi(match: match))
   }
 
+  var sortedMatches: Array<Binding<Match>> {
+    $matches.matchesList.sorted(by: { $0.matchTimestamp.wrappedValue > $1.matchTimestamp.wrappedValue })
+  }
+
   var body: some View {
     NavigationStack {
       VStack {
         VStack {
-          List($matches.matchesList) { match in
+          List(sortedMatches) { match in
             NavigationLink(destination: TeamAUi(match: match)) {
               MatchRow(
                 title: "\(match.firstTeam.teamName.wrappedValue) vs \(match.secondTeam.teamName.wrappedValue)",
-                matchDate: "\(match.matchDate.wrappedValue)",
+                matchTime: "\(getLocalTimeString( match.matchTimestamp.wrappedValue))",
                 isMatchEnded: match.firstTeam.hasInningsEnded.wrappedValue && match.secondTeam.hasInningsEnded.wrappedValue
               )
             }
@@ -79,7 +83,7 @@ struct ButtonFull: View {
 
 struct MatchRow: View {
   var title: String = "Cricket Match #"
-  var matchDate = getCurrentDate()
+  var matchTime: String
   var isMatchEnded: Bool = false
 
   var body: some View {
@@ -93,7 +97,7 @@ struct MatchRow: View {
           .padding(.bottom, 2)
           .frame(maxWidth: .infinity, alignment: .leading)
           .clipped()
-        Text(matchDate)
+        Text(matchTime)
           .frame(maxWidth: .infinity, alignment: .leading)
           .clipped()
           .foregroundColor(.secondary)

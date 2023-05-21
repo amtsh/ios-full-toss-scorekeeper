@@ -11,13 +11,13 @@ struct Match: Identifiable {
   var id: UUID
   var firstTeam: TeamScoreBoard
   var secondTeam: TeamScoreBoard
-  var matchDate: String = ""
+  var matchTimestamp: Int
 
   init(id: UUID = UUID(), firstTeam: TeamScoreBoard, secondTeam: TeamScoreBoard) {
     self.id = id
     self.firstTeam = firstTeam
     self.secondTeam = secondTeam
-    self.matchDate = getCurrentDate()
+    self.matchTimestamp = getEpochTime()
   }
 
   // computed
