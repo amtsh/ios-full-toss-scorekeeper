@@ -27,8 +27,7 @@ struct HomeUi: View {
     NavigationStack {
       VStack {
         VStack {
-          List($matches.matchesList) { match in // Replace with your data model here
-
+          List($matches.matchesList) { match in
             NavigationLink(destination: TeamAUi(match: match)) {
               MatchRow(
                 title: "\(match.firstTeam.teamName.wrappedValue) vs \(match.secondTeam.teamName.wrappedValue)",

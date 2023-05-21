@@ -49,6 +49,14 @@ struct TeamScoreBoard {
     return Int(currentRunRate * Float(matchOvers))
   }
 
+  var totalBallsDeliveredFromStart: Int {
+    return (oversDelivered * 6) + ballsDelivered
+  }
+
+  var ballsRemainingInMatch: Int {
+    return (matchOvers * 6) - totalBallsDeliveredFromStart
+  }
+
   mutating func act(_ action: TeamScoreBoardAction) {
     switch action {
       case .ADDRUNS(let runs):
@@ -102,7 +110,6 @@ struct TeamScoreBoard {
   }
 
   mutating private func updateRunRate() {
-    let totalBallsDeliveredFromStart = (oversDelivered * 6) + ballsDelivered
     if (totalBallsDeliveredFromStart > 0) {
       currentRunRate = Float(runs) / (Float(totalBallsDeliveredFromStart) / 6.0)
     }

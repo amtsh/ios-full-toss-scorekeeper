@@ -28,6 +28,7 @@
 		8DE3A77B2A17FF080024C7FF /* SecondInningsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE3A77A2A17FF080024C7FF /* SecondInningsMenu.swift */; };
 		8DE3A77D2A1808140024C7FF /* MatchSummaryUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE3A77C2A1808140024C7FF /* MatchSummaryUi.swift */; };
 		8DE3A7812A180DCC0024C7FF /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE3A7802A180DCC0024C7FF /* Match.swift */; };
+		8DE3A7872A198E1B0024C7FF /* ToWinInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE3A7862A198E1B0024C7FF /* ToWinInfo.swift */; };
 		8DFD7D232A14F5E500C24667 /* CircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD7D222A14F5E500C24667 /* CircularButton.swift */; };
 		8DFD7D5F2A152C9E00C24667 /* ControlPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD7D5E2A152C9E00C24667 /* ControlPanel.swift */; };
 		8DFD7D612A152CFB00C24667 /* ThisOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD7D602A152CFB00C24667 /* ThisOver.swift */; };
@@ -79,6 +80,7 @@
 		8DE3A77A2A17FF080024C7FF /* SecondInningsMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondInningsMenu.swift; sourceTree = "<group>"; };
 		8DE3A77C2A1808140024C7FF /* MatchSummaryUi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchSummaryUi.swift; sourceTree = "<group>"; };
 		8DE3A7802A180DCC0024C7FF /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
+		8DE3A7862A198E1B0024C7FF /* ToWinInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToWinInfo.swift; sourceTree = "<group>"; };
 		8DFD7D222A14F5E500C24667 /* CircularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularButton.swift; sourceTree = "<group>"; };
 		8DFD7D5E2A152C9E00C24667 /* ControlPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPanel.swift; sourceTree = "<group>"; };
 		8DFD7D602A152CFB00C24667 /* ThisOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThisOver.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				8DFD7D222A14F5E500C24667 /* CircularButton.swift */,
+				8DE3A7862A198E1B0024C7FF /* ToWinInfo.swift */,
 				8DE3A7762A17F7780024C7FF /* AfterInningsEndButton.swift */,
 				8DE3A76D2A17D2A50024C7FF /* LiveIndicator.swift */,
 				8DFD7D5E2A152C9E00C24667 /* ControlPanel.swift */,
@@ -378,6 +381,7 @@
 				8DE3A7812A180DCC0024C7FF /* Match.swift in Sources */,
 				8DE3A76A2A17AAE70024C7FF /* MatchesManager.swift in Sources */,
 				8DFD7D702A15633700C24667 /* MainScore.swift in Sources */,
+				8DE3A7872A198E1B0024C7FF /* ToWinInfo.swift in Sources */,
 				8DBA0E8F2A12DBAF005F6789 /* TeamAUi.swift in Sources */,
 				8D11A7012A16D5900071024B /* utils.swift in Sources */,
 				8DFD7D652A152EA400C24667 /* YetToBat.swift in Sources */,

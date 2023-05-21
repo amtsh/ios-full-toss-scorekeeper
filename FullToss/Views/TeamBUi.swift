@@ -72,12 +72,7 @@ struct TeamBUi: View {
             }
           }
           Divider()
-          HStack {
-            Text("To win:")
-            Text("40 runs in 30 balls")
-              .font(.system(.headline, weight: .heavy))
-              .foregroundColor(.pink)
-          }
+          ToWinInfo(match: match)
           Divider()
 
           ThisOver(
@@ -107,7 +102,7 @@ struct TeamBUi: View {
       }
       .padding(.top, 0)
       .navigationBarTitleDisplayMode(.inline)
-      .navigationTitle("")
+      .navigationTitle("Team B")
       .navigationBarItems(
         trailing: Button(action: {
           showMenu.toggle()
@@ -133,13 +128,8 @@ struct TeamBUi: View {
 
 struct TeamBUi_Previews: PreviewProvider {
   static var previews: some View {
-    let teamA = TeamScoreBoard(teamName: "TEAM A", matchOvers: 10)
-    let teamB = TeamScoreBoard(teamName: "TEAM B", matchOvers: 10)
-
-    let match = Match(firstTeam: teamA, secondTeam: teamB)
-
     NavigationStack {
-      TeamBUi(match: .constant(match))
+      TeamBUi(match: .constant(Match.sampleMatch))
     }
   }
 }

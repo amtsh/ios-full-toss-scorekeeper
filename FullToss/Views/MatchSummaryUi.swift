@@ -23,12 +23,8 @@ struct MatchSummaryUi: View {
 
 struct MatchSummaryUi_Previews: PreviewProvider {
   static var previews: some View {
-    let teamA = TeamScoreBoard(teamName: "TEAM A", matchOvers: 10)
-    let teamB = TeamScoreBoard(teamName: "TEAM B", matchOvers: 10)
-    let match = Match(firstTeam: teamA, secondTeam: teamB)
-
     NavigationStack {
-      MatchSummaryUi(match: .constant(match))
+      MatchSummaryUi(match: .constant(Match.sampleMatch))
     }
   }
 }

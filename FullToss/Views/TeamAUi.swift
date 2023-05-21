@@ -88,7 +88,7 @@ struct TeamAUi: View {
       }
       .padding(.top, 0)
       .navigationBarTitleDisplayMode(.inline)
-      .navigationTitle("")
+      .navigationTitle("Team A")
       .navigationBarItems(
         trailing: Button(action: {
           showMenu.toggle()
@@ -114,14 +114,8 @@ struct TeamAUi: View {
 
 struct TeamAUi_Previews: PreviewProvider {
   static var previews: some View {
-    let teamA = TeamScoreBoard(teamName: "TEAM A", matchOvers: 10)
-    let teamB = TeamScoreBoard(teamName: "TEAM B", matchOvers: 10)
-
-    let match = Match(firstTeam: teamA, secondTeam: teamB)
-
     NavigationStack {
-      TeamAUi(match: .constant(match))
+      TeamAUi(match: .constant(Match.sampleMatch))
     }
   }
 }
-
