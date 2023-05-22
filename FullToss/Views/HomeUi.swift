@@ -28,7 +28,7 @@ struct HomeUi: View {
   }
 
   var body: some View {
-    NavigationStack {
+    VStack {
       VStack {
         VStack {
           List(sortedMatches) { match in
@@ -50,7 +50,6 @@ struct HomeUi: View {
       NewMatchButtonSection(matches: matches)
         .padding(.vertical, 50)
         .padding(.horizontal)
-
     }
     .frame(maxWidth: .infinity)
     .padding(.top)
@@ -65,19 +64,6 @@ struct HomeUi_Previews: PreviewProvider {
       HomeUi()
     }
 
-  }
-}
-
-struct ButtonFull: View {
-  var text: String = "Button"
-  var icon = ""
-
-  var body: some View {
-    Label(text, systemImage: icon)
-      .font(.system(.callout, weight: .semibold))
-      .padding(.vertical, 10)
-      .frame(maxWidth: .infinity)
-      .clipped()
   }
 }
 
@@ -112,15 +98,13 @@ struct NewMatchButtonSection: View {
   @ObservedObject var matches: MatchesManager
 
   var body: some View {
-    Button(
-      action: {
+    FullButtonPrimary(
+      text: "New Match",
+      icon: "plus",
+      onTap: {
         showNewMatchPreScreenSheet.toggle()
-      },
-      label: {
-        ButtonFull(text: "New Match")
       }
     )
-    .buttonStyle(.borderedProminent)
     .sheet(isPresented: $showNewMatchPreScreenSheet) {
       NewMatchPreScreen(matches: matches)
         .presentationDetents([.fraction(0.75), .large])

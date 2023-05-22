@@ -84,9 +84,10 @@ struct TeamBUi: View {
 
         if match.secondTeam.hasInningsEnded {
           NavigationLink(destination: MatchSummaryUi(match: $match)) {
-            ButtonFull(text: "See Match Summary", icon: "medal.fill")
+            FullButtonNav(text: "See Match Summary", icon: "medal")
           }
           .buttonStyle(.bordered)
+          .tint(.pink)
           .padding(.horizontal)
         } else {
           ControlPanel(

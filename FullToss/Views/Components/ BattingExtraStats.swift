@@ -10,7 +10,7 @@ import SwiftUI
 struct BattingExtraStats: View {
 
  var currentRunRate: Float
- var projectedRuns: Int
+ var projectedRuns: Int? = nil
  var wideBalls: Int
  var noBalls: Int
 
@@ -26,16 +26,20 @@ struct BattingExtraStats: View {
       .foregroundColor(.secondary)
       .font(.system(.subheadline, weight: .regular))
       .clipped()
-      HStack {
-        Text("Projected Score")
-        Text("\(projectedRuns)")
+
+      if ((projectedRuns) != nil) {
+        HStack {
+          Text("Projected Score")
+          Text("\(projectedRuns!)")
+        }
+        .padding(.horizontal)
+        .padding(.bottom, 5)
+        .frame(maxWidth: .infinity, alignment: .trailing)
+        .foregroundColor(.secondary)
+        .font(.system(.subheadline, weight: .regular))
+        .clipped()
       }
-      .padding(.horizontal)
-      .padding(.bottom, 5)
-      .frame(maxWidth: .infinity, alignment: .trailing)
-      .foregroundColor(.secondary)
-      .font(.system(.subheadline, weight: .regular))
-      .clipped()
+
       HStack {
         Text("Extras")
         Text("\(wideBalls) Wides · \(noBalls) No balls")

@@ -13,9 +13,47 @@ struct MatchSummaryUi: View {
 
   var body: some View {
     VStack {
-      Text("Match Summary of")
-      Text("\(match.firstTeam.teamName)")
-      Text("\(match.secondTeam.teamName)")
+      VStack {
+        MainScore(
+          teamName: match.firstTeam.teamName,
+          matchOvers: match.firstTeam.matchOvers,
+          totalRuns: match.firstTeam.runs,
+          totalWicketsDown: match.firstTeam.wicketsDown,
+          oversDelivered: match.firstTeam.oversDelivered,
+          ballsDelivered: match.firstTeam.ballsDelivered
+        )
+        BattingExtraStats(
+          currentRunRate: match.firstTeam.currentRunRate,
+          wideBalls: match.firstTeam.extras.wideBalls,
+          noBalls: match.firstTeam.extras.noBalls
+        )
+      }
+      Divider()
+      ToWinInfo(match: match)
+      Divider()
+
+      VStack {
+        MainScore(
+          teamName: match.secondTeam.teamName,
+          matchOvers: match.secondTeam.matchOvers,
+          totalRuns: match.secondTeam.runs,
+          totalWicketsDown: match.secondTeam.wicketsDown,
+          oversDelivered: match.secondTeam.oversDelivered,
+          ballsDelivered: match.secondTeam.ballsDelivered
+        )
+        BattingExtraStats(
+          currentRunRate: match.secondTeam.currentRunRate,
+          wideBalls: match.secondTeam.extras.wideBalls,
+          noBalls: match.secondTeam.extras.noBalls
+        )
+      }
+//      Divider()
+      Spacer()
+
+//      FullButtonSecondary(
+//        text: "Back to Home", icon: "list.bullet",
+//        onTap: {
+//      })
     }
     .navigationTitle("Match Summary")
   }

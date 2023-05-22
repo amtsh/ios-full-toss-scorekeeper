@@ -68,9 +68,14 @@ struct TeamAUi: View {
 
         if match.firstTeam.hasInningsEnded {
           NavigationLink(destination: TeamBUi(match: $match)) {
-            ButtonFull(text: "Goto Second Innings", icon: "forward.fill")
+
+            FullButtonNav(
+            text: "Goto Second Innings", icon: "forward.fill"
+            )
           }
           .buttonStyle(.bordered)
+          .tint(.pink)
+          .foregroundColor(.pink)
           .padding(.horizontal)
 
         } else {

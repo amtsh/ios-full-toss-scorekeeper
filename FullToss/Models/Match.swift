@@ -22,7 +22,7 @@ struct Match: Identifiable {
 
   // computed
   var runsToWin: Int {
-    return firstTeam.runs - secondTeam.runs
+    return (firstTeam.runs + 1) - secondTeam.runs
   }
 
   // computed

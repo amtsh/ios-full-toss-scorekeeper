@@ -26,14 +26,8 @@ struct SecondInningsMenu: View {
         .foregroundColor(.blue)
 
         Section {
-          Button(
-            action: {
-            },
-            label: {
-              ButtonFull(text: "End Match", icon: "stop.fill")
-            }
-          )
-          .foregroundColor(.red)
+          FullButtonSecondary(text: "End Match", icon: "stop.fill")
+            .foregroundColor(.pink)
         }
       }
 

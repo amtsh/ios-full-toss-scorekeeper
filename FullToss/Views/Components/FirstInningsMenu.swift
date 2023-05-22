@@ -37,13 +37,8 @@ struct FirstInningsMenu: View {
         .foregroundColor(.blue)
 
         Section {
-          Button(
-            action: {},
-            label: {
-              ButtonFull(text: "Start Second Innings", icon: "forward.fill")
-            }
-          )
-          .foregroundColor(.red)
+          FullButtonSecondary(text: "Start Second Innings", icon: "forward.fill")
+            .foregroundColor(.pink)
         }
       }
 

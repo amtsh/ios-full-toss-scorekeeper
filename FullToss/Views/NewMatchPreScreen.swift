@@ -34,64 +34,59 @@ struct NewMatchPreScreen: View {
   }
 
   var body: some View {
-    NavigationView {
+      VStack {
+        Group {
+          Form {
+            Section() {
 
-      Form {
-        Section() {
-
-          HStack {
-            Text("Overs")
-            Spacer()
-            TextField("10", text: $oversInput)
-              .onChange(of: oversInput) { newValue in
-                overs = Float(newValue) ?? 0
+              HStack {
+                Text("Overs")
+                Spacer()
+                TextField("10", text: $oversInput)
+                  .onChange(of: oversInput) { newValue in
+                    overs = Float(newValue) ?? 0
+                  }
+                  .keyboardType(.numberPad)
+                  .multilineTextAlignment(.trailing)
               }
-              .keyboardType(.numberPad)
-              .multilineTextAlignment(.trailing)
-          }
 
-          Slider(value: $overs, in: 1...50, step: 1)
-            .onChange(of: overs) { newValue in
-              oversInput = String(format: "%.0f", overs)
+              Slider(value: $overs, in: 1...50, step: 1)
+                .onChange(of: overs) { newValue in
+                  oversInput = String(format: "%.0f", overs)
+                }
             }
+
+            Section() {
+              HStack {
+                Text("First Team Name")
+                Spacer()
+                TextField("", text: $firstTeamName)
+                  .multilineTextAlignment(.trailing)
+              }
+
+              HStack {
+                Text("Second Team Name")
+                Spacer()
+                TextField("", text: $secondTeamName)
+                  .multilineTextAlignment(.trailing)
+              }
+            }
+
+            Section(footer: Text("1 run on wide or no ball delivery")) {
+              Toggle("Extras", isOn: $extrasEnabled)
+            }
+          }
         }
 
-        Section() {
-          HStack {
-            Text("First Team Name")
-            Spacer()
-            TextField("", text: $firstTeamName)
-              .multilineTextAlignment(.trailing)
-          }
-
-          HStack {
-            Text("Second Team Name")
-            Spacer()
-            TextField("", text: $secondTeamName)
-              .multilineTextAlignment(.trailing)
-          }
+        Group {
+          FullButtonSecondary(
+            text: "Start Match",
+            icon: "play.fill",
+            onTap: onStartMatchTap
+          ).padding(.vertical, 0)
         }
-
-        Section(footer: Text("1 run on wide or no ball delivery")) {
-          Toggle("Extras", isOn: $extrasEnabled)
-        }
-
-        Button(
-          action: {
-            onStartMatchTap()
-          },
-          label: {
-            ButtonFull(text: "Start Match", icon: "play.fill")
-          }
-        )
-        .foregroundColor(.blue)
-
-
+        .navigationBarTitle("New Match")
       }
-      .padding(.horizontal, 0)
-      .navigationBarTitle("New Match")
-
-    }
     .padding(.top, 0)
 
   }
@@ -99,6 +94,8 @@ struct NewMatchPreScreen: View {
 
 struct NewMatchPreScreen_Previews: PreviewProvider {
   static var previews: some View {
-    NewMatchPreScreen(matches: MatchesManager())
+    NavigationStack {
+      NewMatchPreScreen(matches: MatchesManager())
+    }
   }
 }

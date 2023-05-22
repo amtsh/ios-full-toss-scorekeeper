@@ -14,13 +14,7 @@ struct AfterInningsEndButton: View {
 
   var body: some View {
     Section {
-      Button(
-        action: {},
-        label: {
-          ButtonFull(text: text, icon: "forward.fill")
-        }
-      )
-      .foregroundColor(.red)
+      FullButtonSecondary(text: text, icon: "forward.fill")
     }
   }
 }
