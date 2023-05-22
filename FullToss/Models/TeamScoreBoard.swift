@@ -38,9 +38,13 @@ struct TeamScoreBoard {
   }
 
   private(set) var overDetails: OverDetails = OverDetails()
-   var extras: Extras = Extras()
+  var extras: Extras = Extras()
 
   var hasInningsEnded: Bool = false
+
+  // State history
+  private let maxHistorySize = 6
+  var stateHistory: [TeamScoreBoard] = []
 
   // Other necessary properties
 
@@ -57,32 +61,65 @@ struct TeamScoreBoard {
     return (matchOvers * 6) - totalBallsDeliveredFromStart
   }
 
+  var canUndo: Bool {
+    return stateHistory.count > 0
+  }
+
+  var canRedo: Bool {
+    return false
+//    TODO:
+//    return stateHistory.count < maxHistorySize
+  }
+
   mutating func act(_ action: TeamScoreBoardAction) {
+    // Store the current state before it is modified
+    let currentState = self
+
     switch action {
       case .ADDRUNS(let runs):
         self.updateScoreBoardOnValidDelivery(runs)
         overDetails.thisOver.append("\(runs)")
+
+        stateHistory.append(currentState)
 
       case .WICKETDOWN:
         updateScoreBoardOnValidDelivery(0)
         updateWicketsDown()
         overDetails.thisOver.append("W")
 
+        stateHistory.append(currentState)
+
       case .NOBALL:
         updateNoBalls()
         overDetails.thisOver.append("NB")
+
+        stateHistory.append(currentState)
 
       case .WIDEBALL:
         updateWideBalls()
         overDetails.thisOver.append("WB")
 
+        stateHistory.append(currentState)
+
       case .ENDINNINGS:
         self.endOfInnings()
 
-      case .UNDO: break
 
-      case .REDO: break
+      case .UNDO:
+        // Undo the last action by restoring the previous state
+        if canUndo {
+          if let previousState = stateHistory.popLast() {
+            self = previousState
+          }
+        }
 
+      case .REDO:
+        // Redo the last undone action by restoring the next state
+        if canRedo {
+          if let nextState = stateHistory.popLast() {
+            self = nextState
+          }
+        }
     }
   }
 
@@ -150,6 +187,5 @@ struct TeamScoreBoard {
       self.endOfInnings()
     }
   }
-  
 }
 

@@ -13,8 +13,11 @@ struct ControlPanel: View {
   var onWicketDownTap: () -> Void
   var onNoBallTap: () -> Void
   var onWideBallTap: () -> Void
+
   var onUndoTap: () -> Void
   var onRedoTap: () -> Void
+  var canUndo: Bool
+  var canRedo: Bool
 
   var body: some View {
     LazyHGrid(rows: [GridItem(.flexible(), alignment: .center), GridItem(.flexible(), alignment: .center), GridItem(.flexible(), alignment: .center), GridItem(.flexible(), alignment: .center)], spacing: 40) {
@@ -24,12 +27,12 @@ struct ControlPanel: View {
         CircularButton(value: "2", onTap: {onRunsTap(2)})
         CircularButton(value: "0", onTap: {onRunsTap(0)})
 
-        CircularButton(value: "arrow.uturn.left", type: .icon, onTap: onUndoTap)
+        CircularButton(value: "arrow.uturn.left", type: .icon, onTap: onUndoTap, isButtonDisabled: !canUndo)
 
         CircularButton(value: "6", onTap: {onRunsTap(6)})
         CircularButton(value: "3", onTap: {onRunsTap(3)})
         CircularButton(value: "1", onTap: {onRunsTap(1)})
-        CircularButton(value: "arrow.uturn.right", type: .icon, onTap: onRedoTap)
+        CircularButton(value: "arrow.uturn.right", type: .icon, onTap: onRedoTap, isButtonDisabled: !canRedo)
       }
       Group {
         CircularButton(value: "W", textColor: Color.red, onTap: onWicketDownTap)

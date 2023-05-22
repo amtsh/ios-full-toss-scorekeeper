@@ -19,6 +19,8 @@ struct CircularButton: View {
   var textColor = Color.primary
   var bgColor = Color.secondary
   var onTap: () -> Void = {}
+  var isButtonDisabled: Bool = false
+  
 
   var body: some View {
     Button(action: {
@@ -43,6 +45,8 @@ struct CircularButton: View {
         }
       }
     }
+    .buttonStyle(.plain)
+    .disabled(isButtonDisabled)
   }
 }
 

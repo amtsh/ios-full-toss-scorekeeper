@@ -85,7 +85,9 @@ struct TeamAUi: View {
             onNoBallTap: handleNoBallTap,
             onWideBallTap: handleWideBallTap,
             onUndoTap: handleUndoTap,
-            onRedoTap: handleRedoTap
+            onRedoTap: handleRedoTap,
+            canUndo: match.firstTeam.canUndo,
+            canRedo: match.firstTeam.canRedo
           )
         }
 
