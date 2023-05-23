@@ -34,7 +34,7 @@ struct NewMatchPreScreen: View {
   }
 
   var body: some View {
-      VStack {
+      NavigationStack {
         Group {
           Form {
             Section() {

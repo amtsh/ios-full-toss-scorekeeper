@@ -19,7 +19,7 @@ struct ToWinInfo: View {
 
     if(match.secondTeam.hasInningsEnded) {
       return AnyView(
-        Text("\(match.winner) WON")
+        Text("\(match.winner)")
         .font(.system(.headline, weight: .heavy))
         .foregroundColor(.pink)
       )
@@ -27,7 +27,7 @@ struct ToWinInfo: View {
 
     return AnyView(HStack {
       Text("To win:")
-      Text("\(match.runsToWin) runs in \(match.secondTeam.ballsRemainingInMatch) balls")
+      Text("\(match.runsRemainingToWin) runs in \(match.secondTeam.ballsRemainingInMatch) balls")
         .font(.system(.headline, weight: .heavy))
         .foregroundColor(.pink)
     })

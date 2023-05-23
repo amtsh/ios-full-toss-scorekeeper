@@ -54,3 +54,15 @@ struct BattingExtraStats: View {
     .padding(.top, 1)
   }
 }
+
+struct BattingExtraStats_Previews: PreviewProvider {
+  static var previews: some View {
+    BattingExtraStats(currentRunRate: 2.0,
+                      projectedRuns: 30,
+                      wideBalls: 1,
+                      noBalls: 1
+    )
+  }
+}
+
+

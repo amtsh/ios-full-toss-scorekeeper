@@ -37,3 +37,16 @@ struct MainScore: View {
       .foregroundColor(.primary)
   }
 }
+
+struct MainScore_Previews: PreviewProvider {
+  static var previews: some View {
+    MainScore(teamName: "Team Name",
+              matchOvers: 10,
+              totalRuns: 125,
+              totalWicketsDown: 1,
+              oversDelivered: 5,
+              ballsDelivered: 2)
+  }
+}
+
+

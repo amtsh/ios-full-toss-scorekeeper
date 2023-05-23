@@ -21,8 +21,13 @@ struct Match: Identifiable {
   }
 
   // computed
-  var runsToWin: Int {
+  var runsRemainingToWin: Int {
     return (firstTeam.runs + 1) - secondTeam.runs
+  }
+
+  // computed
+  var hasSecondTeamWon: Bool {
+    return secondTeam.runs >= (firstTeam.runs + 1)
   }
 
   // computed
@@ -38,10 +43,10 @@ struct Match: Identifiable {
   var winner: String {
     if isMatchEnded {
       if firstTeam.runs < secondTeam.runs {
-        return secondTeam.teamName
+        return "\(secondTeam.teamName) WON"
       }
       if firstTeam.runs > secondTeam.runs {
-        return firstTeam.teamName
+        return "\(firstTeam.teamName) WON"
       }
       if firstTeam.runs == secondTeam.runs {
         return "DRAW"

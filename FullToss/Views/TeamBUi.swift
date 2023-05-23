@@ -12,18 +12,26 @@ struct TeamBUi: View {
   @Binding var match: Match
   @State private var showMenu: Bool = false
 
+  func watchWinningScore() {
+    if match.hasSecondTeamWon {
+      match.secondTeam.act(.ENDINNINGS)
+    }
+  }
+
   func addToRuns(runs: Int) {
     match.secondTeam.act(.ADDRUNS(runs))
+    watchWinningScore()
   }
   func handleWicketDownTap() {
     match.secondTeam.act(.WICKETDOWN)
   }
   func handleWideBallTap() {
     match.secondTeam.act(.WIDEBALL)
+    watchWinningScore()
   }
   func handleNoBallTap() {
     match.secondTeam.act(.NOBALL)
-
+    watchWinningScore()
   }
   func handleEndFirstInningsTap() {
     match.secondTeam.act(.ENDINNINGS)
@@ -55,20 +63,22 @@ struct TeamBUi: View {
 
               Divider()
 
-              MainScore(
-                teamName: match.secondTeam.teamName,
-                matchOvers: match.secondTeam.matchOvers,
-                totalRuns: match.secondTeam.runs,
-                totalWicketsDown: match.secondTeam.wicketsDown,
-                oversDelivered: match.secondTeam.oversDelivered,
-                ballsDelivered: match.secondTeam.ballsDelivered
-              )
-              BattingExtraStats(
-                currentRunRate: match.secondTeam.currentRunRate,
-                projectedRuns: match.secondTeam.projectedRuns,
-                wideBalls: match.secondTeam.extras.wideBalls,
-                noBalls: match.secondTeam.extras.noBalls
-              )
+              VStack{
+                MainScore(
+                  teamName: match.secondTeam.teamName,
+                  matchOvers: match.secondTeam.matchOvers,
+                  totalRuns: match.secondTeam.runs,
+                  totalWicketsDown: match.secondTeam.wicketsDown,
+                  oversDelivered: match.secondTeam.oversDelivered,
+                  ballsDelivered: match.secondTeam.ballsDelivered
+                )
+                BattingExtraStats(
+                  currentRunRate: match.secondTeam.currentRunRate,
+                  projectedRuns: match.secondTeam.projectedRuns,
+                  wideBalls: match.secondTeam.extras.wideBalls,
+                  noBalls: match.secondTeam.extras.noBalls
+                )
+              }
             }
           }
           Divider()
