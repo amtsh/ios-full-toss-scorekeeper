@@ -14,24 +14,37 @@ struct ThisOver: View {
   var thisOver: [String]
 
   var body: some View {
-    HStack {
-      Text("This over")
-      Spacer()
-      Text("\(runsInCurrentOver) runs (\(ballsLeftInCurrentOver) balls left)")
-    }
-    .padding(.top)
-    .padding(.horizontal)
-    .frame(maxWidth: .infinity, alignment: .leading)
-    .font(.system(.subheadline, weight: .regular))
-    .foregroundColor(.secondary)
-    .clipped()
-    
-    LazyHGrid(rows: [GridItem(.flexible(), spacing: 0, alignment: .center)], spacing: 30) {
-      ForEach(thisOver.indices, id: \.self) { index in
-        Text(thisOver[index])
-          .font(.system(.largeTitle, weight: .semibold))
-          .foregroundColor(.secondary)
+    VStack {
+      HStack {
+        Text("This over")
+        Spacer()
+        Text("\(runsInCurrentOver) runs (\(ballsLeftInCurrentOver) balls left)")
       }
+      .padding(.top)
+      .padding(.horizontal)
+      .frame(maxWidth: .infinity, alignment: .leading)
+      .font(.system(.subheadline, weight: .regular))
+      .foregroundColor(.secondary)
+      .clipped()
+
+      ScrollView(.horizontal, showsIndicators: false) {
+        LazyHGrid(rows: [GridItem(.flexible(), alignment: .center)], spacing: 40) {
+          ForEach(thisOver.indices, id: \.self) { index in
+            Text(thisOver[index])
+              .font(.system(.largeTitle, weight: .semibold))
+              .foregroundColor(.secondary)
+              .id(index)
+          }
+        }.padding(.horizontal)
+      }
+      .padding(.horizontal)
     }
+  }
+}
+
+struct ThisOver_Previews: PreviewProvider {
+  static var previews: some View {
+    ThisOver(runsInCurrentOver: 20, ballsLeftInCurrentOver: 1, thisOver: ["6","4","3","2","1", "11"]
+    )
   }
 }

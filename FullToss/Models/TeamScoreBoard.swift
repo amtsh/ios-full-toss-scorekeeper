@@ -137,12 +137,12 @@ struct TeamScoreBoard {
     }
 
     self.updateRuns(newRuns)
-    overDetails.runsInCurrentOver += newRuns
   }
 
   mutating private func updateRuns(_ newRuns: Int) {
     runs += newRuns
 
+    self.updateThisOverRuns(newRuns)
     self.updateRunRate()
   }
 
@@ -150,6 +150,10 @@ struct TeamScoreBoard {
     if (totalBallsDeliveredFromStart > 0) {
       currentRunRate = Float(runs) / (Float(totalBallsDeliveredFromStart) / 6.0)
     }
+  }
+
+  mutating private func updateThisOverRuns(_ newRuns: Int) {
+    overDetails.runsInCurrentOver += newRuns
   }
 
   mutating private func updateWicketsDown() {

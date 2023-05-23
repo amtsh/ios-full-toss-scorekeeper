@@ -24,7 +24,7 @@ struct BattingExtraStats: View {
       .padding(.bottom, 5)
       .frame(maxWidth: .infinity, alignment: .trailing)
       .foregroundColor(.secondary)
-      .font(.system(.subheadline, weight: .regular))
+      .font(.system(.callout, weight: .regular))
       .clipped()
 
       if ((projectedRuns) != nil) {
@@ -36,7 +36,7 @@ struct BattingExtraStats: View {
         .padding(.bottom, 5)
         .frame(maxWidth: .infinity, alignment: .trailing)
         .foregroundColor(.secondary)
-        .font(.system(.subheadline, weight: .regular))
+        .font(.system(.callout, weight: .regular))
         .clipped()
       }
 
@@ -48,7 +48,7 @@ struct BattingExtraStats: View {
       .padding(.bottom, 5)
       .frame(maxWidth: .infinity, alignment: .trailing)
       .foregroundColor(.secondary)
-      .font(.system(.subheadline, weight: .regular))
+      .font(.system(.callout, weight: .regular))
       .clipped()
     }
     .padding(.top, 1)
