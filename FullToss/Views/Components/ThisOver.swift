@@ -20,7 +20,7 @@ struct ThisOver: View {
         Spacer()
         Text("\(runsInCurrentOver) runs (\(ballsLeftInCurrentOver) balls left)")
       }
-      .padding(.top)
+      .padding(.vertical, 5)
       .padding(.horizontal)
       .frame(maxWidth: .infinity, alignment: .leading)
       .font(.system(.subheadline, weight: .regular))
