@@ -30,12 +30,13 @@ func getDateString(_ epochTime: Int = getEpochTime()) -> String {
   return formatter.string(from: date)
 }
 
-// May 21, 2023 at 1:45:30 PM
+// Thu, May 21, 1:45 PM
 func getLocalTimeString(_ epochTime: Int) -> String {
   let date = Date(timeIntervalSince1970: Double(epochTime))
   let dateFormatter = DateFormatter()
-  dateFormatter.dateStyle = .medium
-  dateFormatter.timeStyle = .short
+  dateFormatter.dateFormat = "EEE, MMM d, hh:mm a"
+//  dateFormatter.dateStyle = .medium
+//  dateFormatter.timeStyle = .short
   dateFormatter.timeZone = TimeZone.current
 
   return dateFormatter.string(from: date)
