@@ -37,7 +37,7 @@
 		8DFD7D652A152EA400C24667 /* YetToBat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD7D642A152EA400C24667 /* YetToBat.swift */; };
 		8DFD7D682A15308000C24667 /* TeamScoreBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD7D672A15308000C24667 /* TeamScoreBoard.swift */; };
 		8DFD7D702A15633700C24667 /* MainScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD7D6F2A15633700C24667 /* MainScore.swift */; };
-		8DFD7D722A15795700C24667 /* ScoreBoardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD7D712A15795700C24667 /* ScoreBoardViewModelTests.swift */; };
+		8DFD7D722A15795700C24667 /* TeamScoreBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD7D712A15795700C24667 /* TeamScoreBoardTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,7 +89,7 @@
 		8DFD7D642A152EA400C24667 /* YetToBat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YetToBat.swift; sourceTree = "<group>"; };
 		8DFD7D672A15308000C24667 /* TeamScoreBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamScoreBoard.swift; sourceTree = "<group>"; };
 		8DFD7D6F2A15633700C24667 /* MainScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScore.swift; sourceTree = "<group>"; };
-		8DFD7D712A15795700C24667 /* ScoreBoardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoardViewModelTests.swift; sourceTree = "<group>"; };
+		8DFD7D712A15795700C24667 /* TeamScoreBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamScoreBoardTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,7 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				8DBA0E752A12CE7A005F6789 /* FullTossTests.swift */,
-				8DFD7D712A15795700C24667 /* ScoreBoardViewModelTests.swift */,
+				8DFD7D712A15795700C24667 /* TeamScoreBoardTests.swift */,
 			);
 			path = FullTossTests;
 			sourceTree = "<group>";
@@ -397,7 +397,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DFD7D722A15795700C24667 /* ScoreBoardViewModelTests.swift in Sources */,
+				8DFD7D722A15795700C24667 /* TeamScoreBoardTests.swift in Sources */,
 				8DBA0E762A12CE7A005F6789 /* FullTossTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
