@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NewMatchPreScreen: View {
-  @ObservedObject var matches: MatchesManager
+  @ObservedObject var matchesManager: MatchesManager
 
   @State private var overs: Float = 10
   @State private var oversInput: String = "10"
@@ -29,7 +29,7 @@ struct NewMatchPreScreen: View {
       )
     )
 
-    matches.createMatch(match: match)
+    matchesManager.createMatch(match: match)
     dismiss()
   }
 
@@ -95,7 +95,7 @@ struct NewMatchPreScreen: View {
 struct NewMatchPreScreen_Previews: PreviewProvider {
   static var previews: some View {
     NavigationStack {
-      NewMatchPreScreen(matches: MatchesManager())
+      NewMatchPreScreen(matchesManager: MatchesManager())
     }
   }
 }

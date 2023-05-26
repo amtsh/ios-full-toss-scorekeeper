@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Match: Identifiable {
+struct Match: Identifiable, Codable {
   var id: UUID
   var firstTeam: TeamScoreBoard
   var secondTeam: TeamScoreBoard

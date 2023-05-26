@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct TeamBUi: View {
-//  @ObservedObject var team: TeamScoreBoardViewModel
   @Binding var match: Match
   @State private var showMenu: Bool = false
 

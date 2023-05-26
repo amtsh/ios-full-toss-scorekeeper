@@ -16,7 +16,7 @@ enum TeamScoreBoardAction {
 }
 
 // Initial state
-struct TeamScoreBoard {
+struct TeamScoreBoard: Codable {
   var teamName: String
   var matchOvers: Int
   private(set) var runs: Int = 0
@@ -25,13 +25,13 @@ struct TeamScoreBoard {
   private(set) var wicketsDown: Int = 0
   private(set) var currentRunRate: Float = 0
   
-  struct OverDetails {
+  struct OverDetails: Codable {
     var ballsLeftInCurrentOver: Int = 6
     var runsInCurrentOver = 0
     var thisOver: [String] = []
   }
 
-  struct Extras {
+  struct Extras: Codable {
     var enabled: Bool = true
     var noBalls: Int = 0
     var wideBalls: Int = 0
@@ -43,10 +43,15 @@ struct TeamScoreBoard {
   var hasInningsEnded: Bool = false
 
   // State history
-  private let maxHistorySize = 6
+  private var maxHistorySize = 6
   var stateHistory: [TeamScoreBoard] = []
 
   // Other necessary properties
+
+  init(teamName: String, matchOvers: Int) {
+    self.teamName = teamName
+    self.matchOvers = matchOvers
+  }
 
   // computed
    var projectedRuns: Int {

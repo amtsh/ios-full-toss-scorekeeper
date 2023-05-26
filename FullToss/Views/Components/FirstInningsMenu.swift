@@ -41,8 +41,6 @@ struct FirstInningsMenu: View {
             .foregroundColor(.pink)
         }
       }
-
-
     }
   }
 }

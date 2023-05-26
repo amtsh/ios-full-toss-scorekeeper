@@ -18,6 +18,7 @@
 		8DBA0E8F2A12DBAF005F6789 /* TeamAUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA0E8E2A12DBAF005F6789 /* TeamAUi.swift */; };
 		8DBA0E932A12F068005F6789 /* HomeUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA0E922A12F068005F6789 /* HomeUi.swift */; };
 		8DE2257F2A1FFC42003DFA04 /* utilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2257E2A1FFC42003DFA04 /* utilsTests.swift */; };
+		8DE225812A202E3A003DFA04 /* MatchesManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE225802A202E3A003DFA04 /* MatchesManagerTests.swift */; };
 		8DE3A76A2A17AAE70024C7FF /* MatchesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE3A7692A17AAE70024C7FF /* MatchesManager.swift */; };
 		8DE3A76C2A17AF980024C7FF /* NewMatchPreScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE3A76B2A17AF980024C7FF /* NewMatchPreScreen.swift */; };
 		8DE3A76E2A17D2A50024C7FF /* LiveIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE3A76D2A17D2A50024C7FF /* LiveIndicator.swift */; };
@@ -72,6 +73,7 @@
 		8DBA0E8E2A12DBAF005F6789 /* TeamAUi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamAUi.swift; sourceTree = "<group>"; };
 		8DBA0E922A12F068005F6789 /* HomeUi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUi.swift; sourceTree = "<group>"; };
 		8DE2257E2A1FFC42003DFA04 /* utilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utilsTests.swift; sourceTree = "<group>"; };
+		8DE225802A202E3A003DFA04 /* MatchesManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesManagerTests.swift; sourceTree = "<group>"; };
 		8DE3A7692A17AAE70024C7FF /* MatchesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchesManager.swift; sourceTree = "<group>"; };
 		8DE3A76B2A17AF980024C7FF /* NewMatchPreScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMatchPreScreen.swift; sourceTree = "<group>"; };
 		8DE3A76D2A17D2A50024C7FF /* LiveIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveIndicator.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				8DBA0E752A12CE7A005F6789 /* FullTossTests.swift */,
 				8DFD7D712A15795700C24667 /* TeamScoreBoardTests.swift */,
 				8DE2257E2A1FFC42003DFA04 /* utilsTests.swift */,
+				8DE225802A202E3A003DFA04 /* MatchesManagerTests.swift */,
 			);
 			path = FullTossTests;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 				8DFD7D722A15795700C24667 /* TeamScoreBoardTests.swift in Sources */,
 				8DBA0E762A12CE7A005F6789 /* FullTossTests.swift in Sources */,
 				8DE2257F2A1FFC42003DFA04 /* utilsTests.swift in Sources */,
+				8DE225812A202E3A003DFA04 /* MatchesManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -620,6 +624,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S8QW3AN65C;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MARKETING_VERSION = 1.0;
@@ -639,6 +644,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S8QW3AN65C;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MARKETING_VERSION = 1.0;

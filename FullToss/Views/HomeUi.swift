@@ -9,7 +9,11 @@ import SwiftUI
 import Foundation
 
 struct HomeUi: View {
-  @StateObject var matches = MatchesManager()
+  @ObservedObject var matchesManager: MatchesManager
+
+  @Environment(\.scenePhase) private var scenePhase
+
+  let saveAction: ()->Void
 
   func getDestination(match: Binding<Match>) -> AnyView {
     if !match.firstTeam.hasInningsEnded.wrappedValue {
@@ -23,23 +27,39 @@ struct HomeUi: View {
     return AnyView(MatchSummaryUi(match: match))
   }
 
+  func handleDeleteMatch(at offsets: IndexSet) {
+    guard let index = offsets.first,
+          index < sortedMatches.count else {
+      return
+    }
+
+    let match = sortedMatches[index].wrappedValue
+    matchesManager.deleteMatch(match)
+  }
+
   var sortedMatches: Array<Binding<Match>> {
-    $matches.matchesList.sorted(by: { $0.matchTimestamp.wrappedValue > $1.matchTimestamp.wrappedValue })
+    $matchesManager.matches.sorted(by: { $0.matchTimestamp.wrappedValue > $1.matchTimestamp.wrappedValue })
   }
 
   var body: some View {
     VStack {
       VStack {
         VStack {
-          List(sortedMatches) { match in
-            NavigationLink(destination: TeamAUi(match: match)) {
-              MatchRow(
-                title: "\(match.firstTeam.teamName.wrappedValue) vs \(match.secondTeam.teamName.wrappedValue)",
-                matchTime: "\(getLocalTimeString( match.matchTimestamp.wrappedValue))",
-                isMatchEnded: match.firstTeam.hasInningsEnded.wrappedValue && match.secondTeam.hasInningsEnded.wrappedValue
-              )
+          List {
+            ForEach(sortedMatches) { match in
+              NavigationLink(
+                destination: TeamAUi(match: match)
+              ) {
+                MatchRow(
+                  title: "\(match.firstTeam.teamName.wrappedValue) vs \(match.secondTeam.teamName.wrappedValue)",
+                  matchTime: "\(getLocalTimeString( match.matchTimestamp.wrappedValue))",
+                  isMatchEnded: match.firstTeam.hasInningsEnded.wrappedValue && match.secondTeam.hasInningsEnded.wrappedValue
+                )
+              }
             }
+            .onDelete(perform: handleDeleteMatch)
             .listRowBackground(Color.clear)
+
           }
           .listStyle(PlainListStyle())
           .scrollIndicators(.hidden)
@@ -47,21 +67,29 @@ struct HomeUi: View {
       }
 
       Spacer()
-      NewMatchButtonSection(matches: matches)
+      NewMatchButtonSection(matchesManager: matchesManager)
         .padding(.vertical, 50)
         .padding(.horizontal)
+    }
+    .onChange(of: scenePhase) { phase in
+      if phase == .inactive { saveAction() }
     }
     .frame(maxWidth: .infinity)
     .padding(.top)
     .clipped()
     .navigationTitle("Matches")
+    .toolbar {
+      EditButton()
+    }
   }
 }
 
 struct HomeUi_Previews: PreviewProvider {
   static var previews: some View {
+    let matchesManager = MatchesManager()
+
     NavigationStack {
-      HomeUi()
+      HomeUi(matchesManager: matchesManager) {}
     }
 
   }
@@ -95,7 +123,7 @@ struct MatchRow: View {
 
 struct NewMatchButtonSection: View {
   @State private var showNewMatchPreScreenSheet: Bool = false
-  @ObservedObject var matches: MatchesManager
+  @ObservedObject var matchesManager: MatchesManager
 
   var body: some View {
     FullButtonPrimary(
@@ -106,7 +134,7 @@ struct NewMatchButtonSection: View {
       }
     )
     .sheet(isPresented: $showNewMatchPreScreenSheet) {
-      NewMatchPreScreen(matches: matches)
+      NewMatchPreScreen(matchesManager: matchesManager)
         .presentationDetents([.fraction(0.75), .large])
         .presentationDragIndicator(.visible)
     }
