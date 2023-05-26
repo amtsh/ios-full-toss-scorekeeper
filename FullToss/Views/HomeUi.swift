@@ -79,7 +79,7 @@ struct HomeUi: View {
     .clipped()
     .navigationTitle("Matches")
     .toolbar {
-      EditButton()
+      EditButton().disabled(sortedMatches.isEmpty)
     }
   }
 }

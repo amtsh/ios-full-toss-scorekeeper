@@ -13,6 +13,7 @@ struct MatchSummaryUi: View {
 
   var body: some View {
     VStack {
+      Divider()
       VStack {
         MainScore(
           teamName: match.firstTeam.teamName,
@@ -28,10 +29,11 @@ struct MatchSummaryUi: View {
           noBalls: match.firstTeam.extras.noBalls
         )
       }
-      Divider()
-      ToWinInfo(match: match)
-      Divider()
 
+      Divider()
+      ToWinInfo(match: match).padding(.vertical)
+      Divider()
+      
       VStack {
         MainScore(
           teamName: match.secondTeam.teamName,
@@ -47,15 +49,11 @@ struct MatchSummaryUi: View {
           noBalls: match.secondTeam.extras.noBalls
         )
       }
-//      Divider()
+      Divider()
       Spacer()
-
-//      FullButtonSecondary(
-//        text: "Back to Home", icon: "list.bullet",
-//        onTap: {
-//      })
     }
     .navigationTitle("Match Summary")
+    .navigationBarTitleDisplayMode(.large)
   }
 }
 

@@ -95,7 +95,7 @@ struct TeamAUi: View {
       }
       .padding(.top, 0)
       .navigationBarTitleDisplayMode(.inline)
-      .navigationTitle("Team A")
+      .navigationTitle("First Innings")
       .navigationBarItems(
         trailing: Button(action: {
           showMenu.toggle()
@@ -110,9 +110,11 @@ struct TeamAUi: View {
       )
       .toolbar {
         ToolbarItem(placement: .principal) {
-          LiveIndicator()
-          .frame(maxWidth: .infinity, alignment: .top)
-          .clipped()
+          if !match.isMatchEnded {
+            LiveIndicator()
+              .frame(maxWidth: .infinity, alignment: .top)
+              .clipped()
+          }
         }
       }
 
