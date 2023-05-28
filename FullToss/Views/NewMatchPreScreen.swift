@@ -22,7 +22,10 @@ struct NewMatchPreScreen: View {
 
   func onStartMatchTap() {
     let match = Match(
-      firstTeam: TeamScoreBoard(teamName: firstTeamName, matchOvers: Int(overs)),
+      firstTeam: TeamScoreBoard(
+        teamName: firstTeamName,
+        matchOvers: Int(overs)
+      ),
       secondTeam: TeamScoreBoard(
         teamName: secondTeamName,
         matchOvers: Int(overs)
@@ -60,14 +63,14 @@ struct NewMatchPreScreen: View {
               HStack {
                 Text("First Team Name")
                 Spacer()
-                TextField("", text: $firstTeamName)
+                TextField("Team A", text: $firstTeamName)
                   .multilineTextAlignment(.trailing)
               }
 
               HStack {
                 Text("Second Team Name")
                 Spacer()
-                TextField("", text: $secondTeamName)
+                TextField("Team B", text: $secondTeamName)
                   .multilineTextAlignment(.trailing)
               }
             }

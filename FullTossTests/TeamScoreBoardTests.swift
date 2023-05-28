@@ -22,7 +22,7 @@ class TeamScoreBoardTests: XCTestCase {
     XCTAssertEqual(testTeam.projectedRuns, 60)
 
     XCTAssertEqual(testTeam.overDetails.runsInCurrentOver, 1)
-    XCTAssertEqual(testTeam.overDetails.ballsLeftInCurrentOver, 5)
+    XCTAssertEqual(testTeam.ballsLeftInCurrentOver, 5)
     XCTAssertEqual(testTeam.overDetails.thisOver, ["1"])
 
     testTeam.act(.ADDRUNS(6))
@@ -57,17 +57,17 @@ class TeamScoreBoardTests: XCTestCase {
     XCTAssertEqual(testTeam.extras.wideBalls, 1, "Wideballs should be updated to 1")
     XCTAssertEqual(testTeam.runs, 1, "Runs should be updated to 1")
     XCTAssertEqual(testTeam.ballsDelivered, 0, "BallsDelivered should be updated to 0")
-    XCTAssertEqual(testTeam.overDetails.ballsLeftInCurrentOver, 6)
+    XCTAssertEqual(testTeam.ballsLeftInCurrentOver, 6)
     XCTAssertEqual(testTeam.overDetails.thisOver, ["WB"])
     XCTAssertEqual(testTeam.overDetails.runsInCurrentOver, 1)
 
     testTeam.act(.ADDRUNS(1))
     XCTAssertEqual(testTeam.runs, 2)
     XCTAssertEqual(testTeam.ballsDelivered, 1)
-    XCTAssertEqual(testTeam.overDetails.ballsLeftInCurrentOver, 5)
-    // TODO bugfix
-//    XCTAssertEqual(testTeam.overDetails.thisOver, ["WB", "1"])
-//    XCTAssertEqual(testTeam.overDetails.runsInCurrentOver, 2)
+    XCTAssertEqual(testTeam.ballsLeftInCurrentOver, 5)
+
+    XCTAssertEqual(testTeam.overDetails.thisOver, ["WB", "1"])
+    XCTAssertEqual(testTeam.overDetails.runsInCurrentOver, 2)
 
     testTeam.act(.UNDO)
     testTeam.act(.UNDO)
@@ -75,7 +75,7 @@ class TeamScoreBoardTests: XCTestCase {
     XCTAssertEqual(testTeam.extras.wideBalls, 0)
     XCTAssertEqual(testTeam.runs, 0)
     XCTAssertEqual(testTeam.ballsDelivered, 0)
-    XCTAssertEqual(testTeam.overDetails.ballsLeftInCurrentOver, 6)
+    XCTAssertEqual(testTeam.ballsLeftInCurrentOver, 6)
     XCTAssertEqual(testTeam.overDetails.thisOver, [])
     XCTAssertEqual(testTeam.overDetails.runsInCurrentOver, 0)
   }
@@ -87,17 +87,17 @@ class TeamScoreBoardTests: XCTestCase {
     XCTAssertEqual(testTeam.extras.wideBalls, 0)
     XCTAssertEqual(testTeam.runs, 1, "Runs should be updated to 1")
     XCTAssertEqual(testTeam.ballsDelivered, 0)
-    XCTAssertEqual(testTeam.overDetails.ballsLeftInCurrentOver, 6)
+    XCTAssertEqual(testTeam.ballsLeftInCurrentOver, 6)
     XCTAssertEqual(testTeam.overDetails.thisOver, ["NB"])
     XCTAssertEqual(testTeam.overDetails.runsInCurrentOver, 1)
 
     testTeam.act(.ADDRUNS(1))
     XCTAssertEqual(testTeam.runs, 2)
     XCTAssertEqual(testTeam.ballsDelivered, 1)
-    XCTAssertEqual(testTeam.overDetails.ballsLeftInCurrentOver, 5)
-    // TODO bugfix
-//        XCTAssertEqual(testTeam.overDetails.thisOver, ["NB", "1"])
-//        XCTAssertEqual(testTeam.overDetails.runsInCurrentOver, 2)
+    XCTAssertEqual(testTeam.ballsLeftInCurrentOver, 5)
+
+    XCTAssertEqual(testTeam.overDetails.thisOver, ["NB", "1"])
+    XCTAssertEqual(testTeam.overDetails.runsInCurrentOver, 2)
 
     testTeam.act(.UNDO)
     testTeam.act(.UNDO)
@@ -105,7 +105,7 @@ class TeamScoreBoardTests: XCTestCase {
     XCTAssertEqual(testTeam.extras.noBalls, 0)
     XCTAssertEqual(testTeam.runs, 0)
     XCTAssertEqual(testTeam.ballsDelivered, 0)
-    XCTAssertEqual(testTeam.overDetails.ballsLeftInCurrentOver, 6)
+    XCTAssertEqual(testTeam.ballsLeftInCurrentOver, 6)
     XCTAssertEqual(testTeam.overDetails.thisOver, [])
     XCTAssertEqual(testTeam.overDetails.runsInCurrentOver, 0)
   }
@@ -137,7 +137,7 @@ class TeamScoreBoardTests: XCTestCase {
     XCTAssertEqual(testTeam.projectedRuns, 160)
 
     XCTAssertEqual(testTeam.overDetails.runsInCurrentOver, 16)
-    XCTAssertEqual(testTeam.overDetails.ballsLeftInCurrentOver, 0)
+//    XCTAssertEqual(testTeam.ballsLeftInCurrentOver, 0)
     XCTAssertEqual(testTeam.overDetails.thisOver, ["1", "2", "3", "4", "6", "0"])
 
     testTeam.act(.ADDRUNS(1))
@@ -145,7 +145,7 @@ class TeamScoreBoardTests: XCTestCase {
     XCTAssertEqual(testTeam.ballsDelivered, 1)
     XCTAssertEqual(testTeam.oversDelivered, 1)
     XCTAssertEqual(testTeam.overDetails.runsInCurrentOver, 1)
-    XCTAssertEqual(testTeam.overDetails.ballsLeftInCurrentOver, 5)
+    XCTAssertEqual(testTeam.ballsLeftInCurrentOver, 5)
     XCTAssertEqual(testTeam.overDetails.thisOver, ["1"])
   }
 

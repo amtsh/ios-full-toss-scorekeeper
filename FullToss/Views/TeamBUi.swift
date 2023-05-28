@@ -86,7 +86,7 @@ struct TeamBUi: View {
 
           ThisOver(
             runsInCurrentOver: match.secondTeam.overDetails.runsInCurrentOver,
-            ballsLeftInCurrentOver: match.secondTeam.overDetails.ballsLeftInCurrentOver,
+            ballsLeftInCurrentOver: match.secondTeam.ballsLeftInCurrentOver,
             thisOver: match.secondTeam.overDetails.thisOver
           )
         }

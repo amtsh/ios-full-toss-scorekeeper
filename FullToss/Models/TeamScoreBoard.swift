@@ -26,7 +26,6 @@ struct TeamScoreBoard: Codable {
   private(set) var currentRunRate: Float = 0
   
   struct OverDetails: Codable {
-    var ballsLeftInCurrentOver: Int = 6
     var runsInCurrentOver = 0
     var thisOver: [String] = []
   }
@@ -51,6 +50,15 @@ struct TeamScoreBoard: Codable {
   init(teamName: String, matchOvers: Int) {
     self.teamName = teamName
     self.matchOvers = matchOvers
+  }
+
+  // computed
+  var ballsLeftInCurrentOver: Int {
+//    if ballsDelivered == 0 {
+//      return 0
+//    }
+//    
+    return 6 - ballsDelivered
   }
 
   // computed
@@ -95,12 +103,18 @@ struct TeamScoreBoard: Codable {
         stateHistory.append(currentState)
 
       case .NOBALL:
+        if(ballsDelivered == 0 && overDetails.thisOver.last != "NB") {
+          resetValuesOnOverStart()
+        }
         updateNoBalls()
         overDetails.thisOver.append("NB")
 
         stateHistory.append(currentState)
 
       case .WIDEBALL:
+        if(ballsDelivered == 0 && overDetails.thisOver.last != "WB") {
+          resetValuesOnOverStart()
+        }
         updateWideBalls()
         overDetails.thisOver.append("WB")
 
@@ -130,11 +144,12 @@ struct TeamScoreBoard: Codable {
 
   mutating private func updateScoreBoardOnValidDelivery(_ newRuns: Int) {
     ballsDelivered += 1
-    overDetails.ballsLeftInCurrentOver = 6 - ballsDelivered
 
     switch ballsDelivered {
       case 1:
-        self.resetValuesOnOverStart()
+        if !["NB", "WB"].contains(overDetails.thisOver.last) {
+          self.resetValuesOnOverStart()
+        }
       case 6:
         self.resetValuesOnOverEnd()
       default:

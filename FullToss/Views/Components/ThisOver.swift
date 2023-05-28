@@ -18,7 +18,8 @@ struct ThisOver: View {
       HStack {
         Text("This over")
         Spacer()
-        Text("\(runsInCurrentOver) runs (\(ballsLeftInCurrentOver) balls left)")
+//      Text("\(runsInCurrentOver) runs (\(ballsLeftInCurrentOver) balls left)")
+        Text("\(runsInCurrentOver) runs")
       }
       .padding(.vertical, 5)
       .padding(.horizontal)
