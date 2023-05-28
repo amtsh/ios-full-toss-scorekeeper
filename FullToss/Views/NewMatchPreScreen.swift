@@ -24,11 +24,13 @@ struct NewMatchPreScreen: View {
     let match = Match(
       firstTeam: TeamScoreBoard(
         teamName: firstTeamName,
-        matchOvers: Int(overs)
+        matchOvers: Int(overs),
+        extrasEnabled: extrasEnabled
       ),
       secondTeam: TeamScoreBoard(
         teamName: secondTeamName,
-        matchOvers: Int(overs)
+        matchOvers: Int(overs),
+        extrasEnabled: extrasEnabled
       )
     )
 
@@ -75,7 +77,13 @@ struct NewMatchPreScreen: View {
               }
             }
 
-            Section(footer: Text("1 run on wide or no ball delivery")) {
+            Section(
+              footer: extrasEnabled
+              ?
+              Text("1 run on wide or no ball delivery")
+              :
+              Text("0 run on wide or no ball delivery")
+            ) {
               Toggle("Extras", isOn: $extrasEnabled)
             }
           }

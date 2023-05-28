@@ -58,7 +58,7 @@ struct Match: Identifiable, Codable {
 
 extension Match {
   static var sampleMatch = Match(
-    firstTeam: TeamScoreBoard(teamName: "TEAM A", matchOvers: 10),
-    secondTeam: TeamScoreBoard(teamName: "TEAM B", matchOvers: 10)
+    firstTeam: TeamScoreBoard(teamName: "TEAM A", matchOvers: 10, extrasEnabled: true),
+    secondTeam: TeamScoreBoard(teamName: "TEAM B", matchOvers: 10, extrasEnabled: true)
   )
 }

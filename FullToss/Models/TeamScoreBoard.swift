@@ -47,9 +47,10 @@ struct TeamScoreBoard: Codable {
 
   // Other necessary properties
 
-  init(teamName: String, matchOvers: Int) {
+  init(teamName: String, matchOvers: Int, extrasEnabled: Bool) {
     self.teamName = teamName
     self.matchOvers = matchOvers
+    self.extras.enabled = extrasEnabled
   }
 
   // computed
@@ -103,7 +104,7 @@ struct TeamScoreBoard: Codable {
         stateHistory.append(currentState)
 
       case .NOBALL:
-        if(ballsDelivered == 0 && overDetails.thisOver.last != "NB") {
+        if isLatestBallValid() {
           resetValuesOnOverStart()
         }
         updateNoBalls()
@@ -112,7 +113,7 @@ struct TeamScoreBoard: Codable {
         stateHistory.append(currentState)
 
       case .WIDEBALL:
-        if(ballsDelivered == 0 && overDetails.thisOver.last != "WB") {
+        if isLatestBallValid() {
           resetValuesOnOverStart()
         }
         updateWideBalls()
@@ -147,7 +148,7 @@ struct TeamScoreBoard: Codable {
 
     switch ballsDelivered {
       case 1:
-        if !["NB", "WB"].contains(overDetails.thisOver.last) {
+        if isLatestBallValid() {
           self.resetValuesOnOverStart()
         }
       case 6:
@@ -210,6 +211,10 @@ struct TeamScoreBoard: Codable {
     if oversDelivered == matchOvers {
       self.endOfInnings()
     }
+  }
+
+  private func isLatestBallValid() -> Bool {
+    return !["NB", "WB"].contains(overDetails.thisOver.last)
   }
 }
 

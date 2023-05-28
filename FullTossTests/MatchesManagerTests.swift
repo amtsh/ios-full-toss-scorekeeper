@@ -24,8 +24,8 @@ class MatchesManagerTests: XCTestCase {
   @MainActor func testCreateMatch() {
     // Given
     let match = Match(
-      firstTeam: TeamScoreBoard(teamName: "TEAM A", matchOvers: 10),
-      secondTeam: TeamScoreBoard(teamName: "TEAM B", matchOvers: 10)
+      firstTeam: TeamScoreBoard(teamName: "TEAM A", matchOvers: 10, extrasEnabled: true),
+      secondTeam: TeamScoreBoard(teamName: "TEAM B", matchOvers: 10, extrasEnabled: true)
     )
 
     // When
