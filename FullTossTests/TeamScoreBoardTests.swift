@@ -241,6 +241,38 @@ class TeamScoreBoardTests: XCTestCase {
     XCTAssertEqual(testTeam.overDetails.runsInCurrentOver, 3)
   }
 
+  func testConsecutiveExtrasVariant1() {
+    var testTeam = TeamScoreBoard(teamName: "Test team", matchOvers: 10, extrasEnabled: true)
+
+    testTeam.act(.ADDRUNS(1))
+    XCTAssertEqual(testTeam.runs, 1)
+    XCTAssertEqual(testTeam.ballsDelivered, 1)
+    XCTAssertEqual(testTeam.ballsLeftInCurrentOver, 5)
+
+    testTeam.act(.NOBALL)
+    XCTAssertEqual(testTeam.extras.noBalls, 1)
+    XCTAssertEqual(testTeam.extras.wideBalls, 0)
+    XCTAssertEqual(testTeam.runs, 2)
+    XCTAssertEqual(testTeam.ballsDelivered, 1)
+    XCTAssertEqual(testTeam.ballsLeftInCurrentOver, 5)
+    XCTAssertEqual(testTeam.overDetails.thisOver, ["1", "NB"])
+    XCTAssertEqual(testTeam.overDetails.runsInCurrentOver, 2)
+
+    testTeam.act(.ADDRUNS(1))
+    XCTAssertEqual(testTeam.runs, 3)
+    XCTAssertEqual(testTeam.ballsDelivered, 2)
+    XCTAssertEqual(testTeam.ballsLeftInCurrentOver, 4)
+
+    testTeam.act(.WIDEBALL)
+    XCTAssertEqual(testTeam.extras.noBalls, 1)
+    XCTAssertEqual(testTeam.extras.wideBalls, 1)
+    XCTAssertEqual(testTeam.runs, 4)
+    XCTAssertEqual(testTeam.ballsDelivered, 2)
+    XCTAssertEqual(testTeam.ballsLeftInCurrentOver, 4)
+    XCTAssertEqual(testTeam.overDetails.thisOver, ["1", "NB", "1", "WB"])
+    XCTAssertEqual(testTeam.overDetails.runsInCurrentOver, 4)
+  }
+
   // Add more tests for other actions if needed
 
 }

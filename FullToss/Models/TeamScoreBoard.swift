@@ -104,7 +104,7 @@ struct TeamScoreBoard: Codable {
         stateHistory.append(currentState)
 
       case .NOBALL:
-        if isLatestBallValid() {
+        if ballsDelivered == 0 && isLatestBallValid() {
           resetValuesOnOverStart()
         }
         updateNoBalls()
@@ -113,7 +113,7 @@ struct TeamScoreBoard: Codable {
         stateHistory.append(currentState)
 
       case .WIDEBALL:
-        if isLatestBallValid() {
+        if ballsDelivered == 0 && isLatestBallValid() {
           resetValuesOnOverStart()
         }
         updateWideBalls()
