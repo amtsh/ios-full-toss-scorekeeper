@@ -13,6 +13,7 @@ struct ControlPanel: View {
   var onWicketDownTap: () -> Void
   var onNoBallTap: () -> Void
   var onWideBallTap: () -> Void
+  var onByeTap: () -> Void
 
   var onUndoTap: () -> Void
   var onRedoTap: () -> Void
@@ -36,12 +37,19 @@ struct ControlPanel: View {
       }
       Group {
         CircularButton(value: "W", textColor: Color.red, onTap: onWicketDownTap)
+        CircularButton(value: "Bye", opacity: 0.70, textColor: Color.black, onTap: onByeTap)
         CircularButton(value: "NB", opacity: 0.70, textColor: Color.black, onTap: onNoBallTap)
         CircularButton(value: "WB", opacity: 0.70, textColor: Color.black, onTap: onWideBallTap)
-        CircularButton(value: "OK", textColor: .green)
+//        CircularButton(value: "OK", textColor: .green)
       }
     }
     .padding()
   }
 
+}
+
+struct ControlPanel_Previews: PreviewProvider {
+  static var previews: some View {
+      ControlPanel(onRunsTap: {_ in }, onWicketDownTap: {}, onNoBallTap: {}, onWideBallTap: {}, onByeTap: {}, onUndoTap: {}, onRedoTap: {}, canUndo: true, canRedo: false)
+  }
 }
