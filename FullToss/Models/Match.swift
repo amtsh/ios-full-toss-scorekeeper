@@ -32,11 +32,7 @@ struct Match: Identifiable, Codable {
 
   // computed
   var isMatchEnded: Bool {
-    if firstTeam.hasInningsEnded && secondTeam.hasInningsEnded {
-      return true
-    }
-
-    return false
+    return firstTeam.hasInningsEnded && secondTeam.hasInningsEnded
   }
 
   // computed
