@@ -24,6 +24,9 @@ struct TeamAUi: View {
   func handleNoBallTap() {
     match.firstTeam.act(.NOBALL)
   }
+  func handleByeTap() {
+    match.firstTeam.act(.BYE)
+  }
   func handleEndFirstInningsTap() {
     match.firstTeam.act(.ENDINNINGS)
   }
@@ -84,6 +87,7 @@ struct TeamAUi: View {
             onWicketDownTap: handleWicketDownTap,
             onNoBallTap: handleNoBallTap,
             onWideBallTap: handleWideBallTap,
+            onByeTap: handleByeTap,
             onUndoTap: handleUndoTap,
             onRedoTap: handleRedoTap,
             canUndo: match.firstTeam.canUndo,

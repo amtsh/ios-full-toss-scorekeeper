@@ -19,6 +19,7 @@ struct FullTossApp: App {
         isAppLoaded = true
       } catch {
         // Handle load error
+        print("Error loading from file")
       }
     }
   }
@@ -29,6 +30,7 @@ struct FullTossApp: App {
         try await matchesManager.save(matches: matchesManager.matches)
       } catch {
         // encountered an error writing to the file system
+        print("Error saving to file")
       }
     }
   }

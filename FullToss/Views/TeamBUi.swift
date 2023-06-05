@@ -32,6 +32,10 @@ struct TeamBUi: View {
     match.secondTeam.act(.NOBALL)
     watchWinningScore()
   }
+  func handleByeTap() {
+    match.secondTeam.act(.BYE)
+    watchWinningScore()
+  }
   func handleEndFirstInningsTap() {
     match.secondTeam.act(.ENDINNINGS)
   }
@@ -104,6 +108,7 @@ struct TeamBUi: View {
             onWicketDownTap: handleWicketDownTap,
             onNoBallTap: handleNoBallTap,
             onWideBallTap: handleWideBallTap,
+            onByeTap: handleByeTap,
             onUndoTap: handleUndoTap,
             onRedoTap: handleRedoTap,
             canUndo: match.secondTeam.canUndo,

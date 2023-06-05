@@ -37,9 +37,9 @@ struct ControlPanel: View {
       }
       Group {
         CircularButton(value: "W", textColor: Color.red, onTap: onWicketDownTap)
-        CircularButton(value: "Bye", opacity: 0.70, textColor: Color.black, onTap: onByeTap)
         CircularButton(value: "NB", opacity: 0.70, textColor: Color.black, onTap: onNoBallTap)
         CircularButton(value: "WB", opacity: 0.70, textColor: Color.black, onTap: onWideBallTap)
+        CircularButton(value: "B", opacity: 0.70, textColor: Color.black, onTap: onByeTap)
 //        CircularButton(value: "OK", textColor: .green)
       }
     }

@@ -10,6 +10,7 @@ import SwiftUI
 @MainActor
 class MatchesManager: ObservableObject {
   @Published var matches: [Match]
+  static var fileName:String = "fulltoss.data"
 
   init() {
     self.matches = []
@@ -26,36 +27,79 @@ class MatchesManager: ObservableObject {
   }
 
   private static func fileURL() throws -> URL {
-    try FileManager.default.url(for: .documentDirectory,
+    return try FileManager.default.url(for: .documentDirectory,
                                 in: .userDomainMask,
                                 appropriateFor: nil,
                                 create: false)
-    .appendingPathComponent("fulltoss.data")
+    .appendingPathComponent(Self.fileName)
+  }
+
+  private static func deleteFile() throws {
+    var fileURL: URL
+
+    do {
+      fileURL = try Self.fileURL()
+    } catch {
+      return
+    }
+
+    let fileManager = FileManager.default
+
+    // Check if the file exists at the specified URL
+    if fileManager.fileExists(atPath: fileURL.path) {
+      do {
+        // Attempt to remove the file
+        try fileManager.removeItem(at: fileURL)
+        print("File deleted successfully.")
+      } catch {
+        // Handle any errors that occur during the deletion process
+        print("Error deleting file: \(error.localizedDescription)")
+        throw error
+      }
+    } else {
+      // File doesn't exist at the specified URL
+      print("File not found at path: \(fileURL.path)")
+    }
   }
 
   func load() async throws {
-    print("Loading from files")
+//    try Self.deleteFile()
+
+    let startTime = Date()
+
+    print("Start: Loading from file")
 
     let task = Task<[Match], Error> {
       let fileURL = try Self.fileURL()
-      guard let data = try? Data(contentsOf: fileURL) else {
-        return []
-      }
+      let data = try Data(contentsOf: fileURL)
 
-      let matchesList = try JSONDecoder().decode([Match].self, from: data)
+      let decoder = JSONDecoder()
+      let matchesList = try decoder.decode([Match].self, from: data)
       return matchesList
     }
+
     let matchList = try await task.value
     self.matches = matchList
+
+    print("End: Loaded from file")
+    let endTime = Date()
+    let executionTime = endTime.timeIntervalSince(startTime)
+    print("LOADING execution time: \(executionTime) seconds")
   }
 
+
   func save(matches: [Match]) async throws {
-    print("Saving to files")
+    let startTime = Date()
+    print("Start: Saving to file")
 
     let task = Task {
       let data = try JSONEncoder().encode(matches)
       let outfile = try Self.fileURL()
       try data.write(to: outfile)
+      print("End: Saved to file")
+      let endTime = Date()
+      let executionTime = endTime.timeIntervalSince(startTime)
+      print("SAVING execution time: \(executionTime) seconds")
     }
     _ = try await task.value
   }

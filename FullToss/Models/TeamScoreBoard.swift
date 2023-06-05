@@ -10,6 +10,7 @@ enum TeamScoreBoardAction {
   case WICKETDOWN
   case WIDEBALL
   case NOBALL
+  case BYE
   case ENDINNINGS
   case UNDO
   case REDO
@@ -120,6 +121,13 @@ struct TeamScoreBoard: Codable {
         overDetails.thisOver.append("WB")
 
         stateHistory.append(currentState)
+
+      case .BYE:
+        updateRuns(1)
+        overDetails.thisOver.append("B")
+
+        stateHistory.append(currentState)
+
 
       case .ENDINNINGS:
         self.endOfInnings()
