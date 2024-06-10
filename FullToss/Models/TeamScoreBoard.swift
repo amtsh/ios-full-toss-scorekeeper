@@ -1,11 +1,14 @@
 //
-//  TeamScoreBoard.swift
+//  NewTeamScoreBoard.swift
 //  FullToss
 //
-//  Created by Amit Shinde on 2023-05-17.
+//  Created by Amit Shinde on 2023-06-16.
 //
 
-enum TeamScoreBoardAction {
+import Foundation
+import SwiftData
+
+enum NewTeamScoreBoardAction {
   case ADDRUNS(_ runs: Int)
   case WICKETDOWN
   case WIDEBALL
@@ -16,8 +19,32 @@ enum TeamScoreBoardAction {
   case REDO
 }
 
-// Initial state
-struct TeamScoreBoard: Codable {
+@Model
+final class OverDetails {
+  var runsInCurrentOver: Int
+  var thisOver: [String]
+
+  init(runsInCurrentOver: Int = 0) {
+    self.runsInCurrentOver = runsInCurrentOver
+    self.thisOver = []
+  }
+}
+
+@Model
+final class Extras {
+  var enabled: Bool
+  var noBalls: Int
+  var wideBalls: Int
+
+  init(enabled: Bool) {
+    self.enabled = enabled
+    self.noBalls = 0
+    self.wideBalls = 0
+  }
+}
+
+@Model
+final class TeamScoreBoard {
   var teamName: String
   var matchOvers: Int
   private(set) var runs: Int = 0
@@ -25,46 +52,20 @@ struct TeamScoreBoard: Codable {
   private(set) var ballsDelivered: Int = 0
   private(set) var wicketsDown: Int = 0
   private(set) var currentRunRate: Float = 0
-  
-  struct OverDetails: Codable {
-    var runsInCurrentOver = 0
-    var thisOver: [String] = []
-  }
 
-  struct Extras: Codable {
-    var enabled: Bool = true
-    var noBalls: Int = 0
-    var wideBalls: Int = 0
-  }
-
-  private(set) var overDetails: OverDetails = OverDetails()
-  var extras: Extras = Extras()
+  @Relationship(deleteRule: .cascade) var overDetails: OverDetails
+  @Relationship(deleteRule: .cascade) var extras: Extras
 
   var hasInningsEnded: Bool = false
 
-  // State history
   private var maxHistorySize = 6
   var stateHistory: [TeamScoreBoard] = []
 
-  // Other necessary properties
-
-  init(teamName: String, matchOvers: Int, extrasEnabled: Bool) {
-    self.teamName = teamName
-    self.matchOvers = matchOvers
-    self.extras.enabled = extrasEnabled
-  }
-
-  // computed
   var ballsLeftInCurrentOver: Int {
-//    if ballsDelivered == 0 {
-//      return 0
-//    }
-//    
     return 6 - ballsDelivered
   }
 
-  // computed
-   var projectedRuns: Int {
+  var projectedRuns: Int {
     return Int(currentRunRate * Float(matchOvers))
   }
 
@@ -82,27 +83,31 @@ struct TeamScoreBoard: Codable {
 
   var canRedo: Bool {
     return false
-//    TODO:
-//    return stateHistory.count < maxHistorySize
+    // TODO:
+    // return stateHistory.count < maxHistorySize
   }
 
-  mutating func act(_ action: TeamScoreBoardAction) {
-    // Store the current state before it is modified
-    let currentState = self
+  init(teamName: String, matchOvers: Int, extrasEnabled: Bool) {
+    self.teamName = teamName
+    self.matchOvers = matchOvers
+    self.overDetails = OverDetails()
+    self.extras = Extras(enabled: extrasEnabled)
+  }
+
+  func act(_ action: NewTeamScoreBoardAction) {
+//    let currentState = self
 
     switch action {
       case .ADDRUNS(let runs):
-        self.updateScoreBoardOnValidDelivery(runs)
+        updateScoreBoardOnValidDelivery(runs)
         overDetails.thisOver.append("\(runs)")
-
-        stateHistory.append(currentState)
+//        stateHistory.append(currentState)
 
       case .WICKETDOWN:
         updateScoreBoardOnValidDelivery(0)
         updateWicketsDown()
         overDetails.thisOver.append("W")
-
-        stateHistory.append(currentState)
+//        stateHistory.append(currentState)
 
       case .NOBALL:
         if ballsDelivered == 0 && isLatestBallValid() {
@@ -110,8 +115,7 @@ struct TeamScoreBoard: Codable {
         }
         updateNoBalls()
         overDetails.thisOver.append("NB")
-
-        stateHistory.append(currentState)
+//        stateHistory.append(currentState)
 
       case .WIDEBALL:
         if ballsDelivered == 0 && isLatestBallValid() {
@@ -119,105 +123,94 @@ struct TeamScoreBoard: Codable {
         }
         updateWideBalls()
         overDetails.thisOver.append("WB")
-
-        stateHistory.append(currentState)
+//        stateHistory.append(currentState)
 
       case .BYE:
         updateRuns(1)
         overDetails.thisOver.append("B")
-
-        stateHistory.append(currentState)
-
+//        stateHistory.append(currentState)
 
       case .ENDINNINGS:
         self.endOfInnings()
 
-
       case .UNDO:
-        // Undo the last action by restoring the previous state
-        if canUndo {
-          if let previousState = stateHistory.popLast() {
-            self = previousState
-          }
+        if canUndo, let previousState = stateHistory.popLast() {
+//          restoreState(previousState)
         }
 
       case .REDO:
-        // Redo the last undone action by restoring the next state
-        if canRedo {
-          if let nextState = stateHistory.popLast() {
-            self = nextState
-          }
+        if canRedo, let nextState = stateHistory.popLast() {
+//          restoreState(nextState)
         }
     }
   }
 
-  mutating private func updateScoreBoardOnValidDelivery(_ newRuns: Int) {
+  private func updateScoreBoardOnValidDelivery(_ newRuns: Int) {
     ballsDelivered += 1
 
     switch ballsDelivered {
       case 1:
         if isLatestBallValid() {
-          self.resetValuesOnOverStart()
+          resetValuesOnOverStart()
         }
       case 6:
-        self.resetValuesOnOverEnd()
+        resetValuesOnOverEnd()
       default:
         break
     }
 
-    self.updateRuns(newRuns)
+    updateRuns(newRuns)
   }
 
-  mutating private func updateRuns(_ newRuns: Int) {
+  private func updateRuns(_ newRuns: Int) {
     runs += newRuns
-
-    self.updateThisOverRuns(newRuns)
-    self.updateRunRate()
+    updateThisOverRuns(newRuns)
+    updateRunRate()
   }
 
-  mutating private func updateRunRate() {
-    if (totalBallsDeliveredFromStart > 0) {
+  private func updateRunRate() {
+    if totalBallsDeliveredFromStart > 0 {
       currentRunRate = Float(runs) / (Float(totalBallsDeliveredFromStart) / 6.0)
     }
   }
 
-  mutating private func updateThisOverRuns(_ newRuns: Int) {
+  private func updateThisOverRuns(_ newRuns: Int) {
     overDetails.runsInCurrentOver += newRuns
   }
 
-  mutating private func updateWicketsDown() {
+  private func updateWicketsDown() {
     wicketsDown += 1
   }
 
-  mutating private func updateWideBalls() {
+  private func updateWideBalls() {
     extras.wideBalls += 1
-    if(extras.enabled) {
-      self.updateRuns(1)
+    if extras.enabled {
+      updateRuns(1)
     }
   }
 
-  mutating private func updateNoBalls() {
+  private func updateNoBalls() {
     extras.noBalls += 1
-    if(extras.enabled) {
-      self.updateRuns(1)
+    if extras.enabled {
+      updateRuns(1)
     }
   }
 
-  mutating private func endOfInnings() {
+  private func endOfInnings() {
     hasInningsEnded = true
   }
 
-  mutating private func resetValuesOnOverStart() {
+  private func resetValuesOnOverStart() {
     overDetails.runsInCurrentOver = 0
     overDetails.thisOver = []
   }
 
-  mutating private func resetValuesOnOverEnd() {
+  private func resetValuesOnOverEnd() {
     oversDelivered += 1
     ballsDelivered = 0
 
     if oversDelivered == matchOvers {
-      self.endOfInnings()
+      endOfInnings()
     }
   }
 

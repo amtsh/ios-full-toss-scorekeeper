@@ -5,13 +5,15 @@
 //  Created by Amit Shinde on 2023-05-19.
 //
 
-import SwiftUI
+import Foundation
+import SwiftData
 
-struct Match: Identifiable, Codable {
+@Model
+final class Match {
   var id: UUID
-  var firstTeam: TeamScoreBoard
-  var secondTeam: TeamScoreBoard
   var matchTimestamp: Int
+  @Relationship(deleteRule: .cascade) var firstTeam: TeamScoreBoard
+  @Relationship(deleteRule: .cascade) var secondTeam: TeamScoreBoard
 
   init(id: UUID = UUID(), firstTeam: TeamScoreBoard, secondTeam: TeamScoreBoard) {
     self.id = id
@@ -19,6 +21,13 @@ struct Match: Identifiable, Codable {
     self.secondTeam = secondTeam
     self.matchTimestamp = getEpochTime()
   }
+}
+
+extension Match {
+  static var sampleMatch = Match(
+    firstTeam: TeamScoreBoard(teamName: "TEAM A", matchOvers: 10, extrasEnabled: true),
+    secondTeam: TeamScoreBoard(teamName: "TEAM B", matchOvers: 10, extrasEnabled: true)
+  )
 
   // computed
   var runsRemainingToWin: Int {
@@ -50,11 +59,4 @@ struct Match: Identifiable, Codable {
     }
     return ""
   }
-}
-
-extension Match {
-  static var sampleMatch = Match(
-    firstTeam: TeamScoreBoard(teamName: "TEAM A", matchOvers: 10, extrasEnabled: true),
-    secondTeam: TeamScoreBoard(teamName: "TEAM B", matchOvers: 10, extrasEnabled: true)
-  )
 }

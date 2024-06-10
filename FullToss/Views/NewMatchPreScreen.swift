@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct NewMatchPreScreen: View {
-  @ObservedObject var matchesManager: MatchesManager
 
   @State private var overs: Float = 10
   @State private var oversInput: String = "10"
@@ -18,10 +17,11 @@ struct NewMatchPreScreen: View {
 
   @State private var extrasEnabled: Bool = true
 
+  @Environment(\.modelContext) private var modelContext
   @Environment(\.dismiss) var dismiss
 
   func onStartMatchTap() {
-    let match = Match(
+    let newMatch = Match(
       firstTeam: TeamScoreBoard(
         teamName: firstTeamName,
         matchOvers: Int(overs),
@@ -34,7 +34,7 @@ struct NewMatchPreScreen: View {
       )
     )
 
-    matchesManager.createMatch(match: match)
+    modelContext.insert(newMatch)
     dismiss()
   }
 
@@ -48,7 +48,7 @@ struct NewMatchPreScreen: View {
                 Text("Overs")
                 Spacer()
                 TextField("10", text: $oversInput)
-                  .onChange(of: oversInput) { newValue in
+                  .onChange(of: oversInput) { oldValue, newValue in
                     overs = Float(newValue) ?? 0
                   }
                   .keyboardType(.numberPad)
@@ -56,7 +56,7 @@ struct NewMatchPreScreen: View {
               }
 
               Slider(value: $overs, in: 1...50, step: 1)
-                .onChange(of: overs) { newValue in
+                .onChange(of: overs) { oldValue, newValue in
                   oversInput = String(format: "%.0f", overs)
                 }
             }
@@ -106,7 +106,7 @@ struct NewMatchPreScreen: View {
 struct NewMatchPreScreen_Previews: PreviewProvider {
   static var previews: some View {
     NavigationStack {
-      NewMatchPreScreen(matchesManager: MatchesManager())
+      NewMatchPreScreen()
     }
   }
 }

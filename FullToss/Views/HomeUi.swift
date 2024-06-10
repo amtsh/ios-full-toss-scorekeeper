@@ -6,92 +6,68 @@
 //
 
 import SwiftUI
-import Foundation
+import SwiftData
 
 struct HomeUi: View {
-  @ObservedObject var matchesManager: MatchesManager
+  @Query(sort: \Match.matchTimestamp, order: .reverse)
+  var matches: [Match]
+
+  @Environment(\.modelContext) private var modelContext
 
   @Environment(\.scenePhase) private var scenePhase
 
-  let saveAction: ()->Void
-
-  func getDestination(match: Binding<Match>) -> AnyView {
-    if !match.firstTeam.hasInningsEnded.wrappedValue {
-      return AnyView(TeamAUi(match: match))
-    }
-
-    if !match.secondTeam.hasInningsEnded.wrappedValue {
-      return AnyView(TeamBUi(match: match))
-    }
-
-    return AnyView(MatchSummaryUi(match: match))
-  }
-
   func handleDeleteMatch(at offsets: IndexSet) {
-    guard let index = offsets.first,
-          index < sortedMatches.count else {
-      return
+    withAnimation {
+      for index in offsets {
+        modelContext.delete(matches[index])
+      }
     }
-
-    let match = sortedMatches[index].wrappedValue
-    matchesManager.deleteMatch(match)
-  }
-
-  var sortedMatches: Array<Binding<Match>> {
-    $matchesManager.matches.sorted(by: { $0.matchTimestamp.wrappedValue > $1.matchTimestamp.wrappedValue })
   }
 
   var body: some View {
-    VStack {
+    NavigationStack {
       VStack {
         VStack {
-          List {
-            ForEach(sortedMatches) { match in
-              NavigationLink(
-                destination: TeamAUi(match: match)
-              ) {
-                MatchRow(
-                  title: "\(match.firstTeam.teamName.wrappedValue) vs \(match.secondTeam.teamName.wrappedValue)",
-                  matchTime: "\(getLocalTimeString( match.matchTimestamp.wrappedValue))",
-                  isMatchEnded: match.firstTeam.hasInningsEnded.wrappedValue && match.secondTeam.hasInningsEnded.wrappedValue
-                )
+          VStack {
+            List {
+              ForEach(matches) { match in
+                NavigationLink(
+                  destination: TeamAUi(match: match)
+                ) {
+                  MatchRow(
+                    title: "\(match.firstTeam.teamName) vs \(match.secondTeam.teamName)",
+                    matchTime: "\(getLocalTimeString( match.matchTimestamp))",
+                    isMatchEnded: match.firstTeam.hasInningsEnded && match.secondTeam.hasInningsEnded
+                  )
+                }
               }
+              .onDelete(perform: handleDeleteMatch)
+              .listRowBackground(Color.clear)
             }
-            .onDelete(perform: handleDeleteMatch)
-            .listRowBackground(Color.clear)
-
+            .listStyle(PlainListStyle())
+            .scrollIndicators(.hidden)
           }
-          .listStyle(PlainListStyle())
-          .scrollIndicators(.hidden)
         }
+        
+        Spacer()
+        NewMatchButtonSection()
+          .padding(.vertical, 50)
+          .padding(.horizontal)
       }
-
-      Spacer()
-      NewMatchButtonSection(matchesManager: matchesManager)
-        .padding(.vertical, 50)
-        .padding(.horizontal)
-    }
-    .onChange(of: scenePhase) { phase in
-      if phase == .inactive { saveAction() }
-    }
-    .frame(maxWidth: .infinity)
-    .padding(.top)
-    .clipped()
-    .navigationTitle("Matches")
-    .toolbar {
-      EditButton().disabled(sortedMatches.isEmpty)
+      .frame(maxWidth: .infinity)
+      .padding(.top)
+      .clipped()
+      .navigationTitle("Matches")
+      .toolbar {
+        EditButton().disabled(matches.isEmpty)
+      }
     }
   }
 }
 
 struct HomeUi_Previews: PreviewProvider {
   static var previews: some View {
-    let matchesManager = MatchesManager()
-
-    NavigationStack {
-      HomeUi(matchesManager: matchesManager) {}
-    }
-
+      HomeUi()
   }
 }
 
@@ -123,7 +99,6 @@ struct MatchRow: View {
 
 struct NewMatchButtonSection: View {
   @State private var showNewMatchPreScreenSheet: Bool = false
-  @ObservedObject var matchesManager: MatchesManager
 
   var body: some View {
     FullButtonPrimary(
@@ -134,7 +109,7 @@ struct NewMatchButtonSection: View {
       }
     )
     .sheet(isPresented: $showNewMatchPreScreenSheet) {
-      NewMatchPreScreen(matchesManager: matchesManager)
+      NewMatchPreScreen()
         .presentationDetents([.fraction(0.75), .large])
         .presentationDragIndicator(.visible)
     }

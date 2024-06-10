@@ -6,45 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct FullTossApp: App {
-  @StateObject private var matchesManager = MatchesManager()
-  @State private var isAppLoaded = false
-
-  func loadMatchesfromDisk() {
-    Task {
-      do {
-        try await matchesManager.load()
-        isAppLoaded = true
-      } catch {
-        // Handle load error
-        print("Error loading from file")
-      }
-    }
-  }
-
-  func saveMatchesToDisk() -> Void {
-    Task {
-      do {
-        try await matchesManager.save(matches: matchesManager.matches)
-      } catch {
-        // encountered an error writing to the file system
-        print("Error saving to file")
-      }
-    }
-  }
-
     var body: some Scene {
         WindowGroup {
-          NavigationStack {
-            HomeUi(matchesManager: matchesManager, saveAction: saveMatchesToDisk)
-              .onAppear {
-                if !isAppLoaded {
-                  loadMatchesfromDisk()
-                }
-              }
-          }
+            HomeUi()
         }
+        .modelContainer(for: [Match.self, TeamScoreBoard.self])
     }
 }

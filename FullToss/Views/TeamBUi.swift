@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TeamBUi: View {
-  @Binding var match: Match
+  var match: Match
   @State private var showMenu: Bool = false
 
   func watchWinningScore() {
@@ -96,7 +96,7 @@ struct TeamBUi: View {
         }
 
         if match.secondTeam.hasInningsEnded {
-          NavigationLink(destination: MatchSummaryUi(match: $match)) {
+          NavigationLink(destination: MatchSummaryUi(match: match)) {
             FullButtonNav(text: "See Match Summary", icon: "medal")
           }
           .buttonStyle(.bordered)
@@ -148,7 +148,7 @@ struct TeamBUi: View {
 struct TeamBUi_Previews: PreviewProvider {
   static var previews: some View {
     NavigationStack {
-      TeamBUi(match: .constant(Match.sampleMatch))
+      TeamBUi(match: Match.sampleMatch)
     }
   }
 }

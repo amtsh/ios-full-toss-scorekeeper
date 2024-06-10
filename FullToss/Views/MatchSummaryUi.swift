@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MatchSummaryUi: View {
 
-  @Binding var match: Match
+  var match: Match
 
   var body: some View {
     VStack {
@@ -60,7 +60,7 @@ struct MatchSummaryUi: View {
 struct MatchSummaryUi_Previews: PreviewProvider {
   static var previews: some View {
     NavigationStack {
-      MatchSummaryUi(match: .constant(Match.sampleMatch))
+      MatchSummaryUi(match: Match.sampleMatch)
     }
   }
 }

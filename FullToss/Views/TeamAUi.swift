@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TeamAUi: View {
-  @Binding var match: Match
+  @Bindable var match: Match
 
   @State private var showMenu: Bool = false
 
@@ -70,7 +70,7 @@ struct TeamAUi: View {
         }
 
         if match.firstTeam.hasInningsEnded {
-          NavigationLink(destination: TeamBUi(match: $match)) {
+          NavigationLink(destination: TeamBUi(match: match)) {
 
             FullButtonNav(
             text: "Goto Second Innings", icon: "forward.fill"
@@ -128,7 +128,7 @@ struct TeamAUi: View {
 struct TeamAUi_Previews: PreviewProvider {
   static var previews: some View {
     NavigationStack {
-      TeamAUi(match: .constant(Match.sampleMatch))
+      TeamAUi(match: Match.sampleMatch)
     }
   }
 }
